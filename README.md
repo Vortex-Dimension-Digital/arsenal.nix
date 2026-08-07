@@ -1,8 +1,33 @@
-# arsenal.nix
+<p align="center">
+  <img src="assets/icon.png" width="200" alt="arsenal.nix logo">
+</p>
 
-Up-to-date offensive security tools packaged for Nix and NixOS.
+<h1 align="center">arsenal.nix</h1>
 
+<p align="center">
+  Current, reproducible offensive security tools packaged for Nix and NixOS.
+</p>
+
+<p align="center">
+  <a href="https://github.com/Vortex-Dimension-Digital/arsenal.nix/actions/workflows/ci.yml"><img src="https://github.com/Vortex-Dimension-Digital/arsenal.nix/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+  <a href="https://wiki.nixos.org/wiki/Flakes"><img src="https://img.shields.io/badge/Nix-Flakes-5277C3?logo=nixos&logoColor=white" alt="Nix Flakes"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Vortex-Dimension-Digital/arsenal.nix" alt="MIT license"></a>
+</p>
+
+Packages are built from pinned, hash-verified upstream sources and can be used
+directly, through a namespaced package set, or as replacements for Nixpkgs
+packages.
+
+> [!WARNING]
 > Use these tools only on systems you own or are explicitly authorized to test.
+
+## Highlights
+
+- Packages and runnable apps are discovered automatically.
+- Sources and dependencies are pinned for reproducible builds.
+- OpenVAS C and Rust outputs share one upstream source and update atomically.
+- OpenVAS uses this repository's `gvm-libs` and `nmap` packages.
+- Automated workflows check packages and propose dependency updates.
 
 ## Packages
 
@@ -24,13 +49,15 @@ Up-to-date offensive security tools packaged for Nix and NixOS.
 
 <!-- END GENERATED PACKAGE DOCS -->
 
-## Try it
+## Quick start
+
+Run a package without installing it:
 
 ```console
 nix run github:Vortex-Dimension-Digital/arsenal.nix#nmap -- --version
 ```
 
-## NixOS
+## Use in NixOS
 
 Add the flake as an input and install a package directly:
 
@@ -59,7 +86,10 @@ Add the flake as an input and install a package directly:
 }
 ```
 
-Or use the namespaced overlay:
+### Namespaced overlay
+
+The default overlay avoids collisions with Nixpkgs by exposing packages under
+`pkgs.arsenal`:
 
 ```nix
 {
@@ -68,8 +98,11 @@ Or use the namespaced overlay:
 }
 ```
 
-`overlays.namespaced` is an explicit alias for `overlays.default`. To expose
-the packages directly and override same-named Nixpkgs packages, use:
+`overlays.namespaced` is an explicit alias for `overlays.default`.
+
+### Direct overlay
+
+To expose packages directly and replace same-named Nixpkgs packages:
 
 ```nix
 {
@@ -83,23 +116,29 @@ the packages directly and override same-named Nixpkgs packages, use:
 
 ## Development
 
-Package definitions are discovered automatically from
-`packages/<name>/package.nix`.
+Package definitions live in `packages/<name>/package.nix` and are discovered
+automatically.
 
 ```console
 nix develop
 nix fmt
-nix build .#nmap
 nix flake check
+./scripts/generate-package-docs.py --check
 ```
 
-The package table in this README is generated from evaluated flake metadata:
+The package table in this README is generated from evaluated flake metadata and
+must not be edited manually:
 
 ```console
 ./scripts/generate-package-docs.py
 ```
 
-Run an updater locally with:
+See [CONTRIBUTING.md](CONTRIBUTING.md) for package conventions and validation
+requirements.
+
+## Updates
+
+Update one package:
 
 ```console
 nix run .#update -- nmap
@@ -111,9 +150,12 @@ List the automatically discovered packages with:
 nix run .#update -- --list
 ```
 
-The scheduled update workflow checks every independent package source, builds
-changed packages, and opens one pull request per update. The OpenVAS C and Rust
-outputs update together. Flake inputs are updated separately each week.
+The scheduled workflows check every independent package source and open a pull
+request for each available update. OpenVAS C and Rust outputs update together;
+flake inputs are updated separately each week. Automated pull requests are
+verified but are never merged automatically.
+
+## License
 
 The repository's Nix packaging code is MIT licensed. Individual tools retain
 their upstream licenses.

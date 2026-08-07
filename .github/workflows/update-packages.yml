@@ -14,6 +14,10 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: update-packages
+  cancel-in-progress: false
+
 jobs:
   discover:
     runs-on: ubuntu-latest
@@ -44,6 +48,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: cachix/install-nix-action@v31
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
+        with:
+          use-flakehub: false
+          use-gha-cache: true
 
       - name: Update ${{ matrix.package }}
         run: nix run .#update -- "${{ matrix.package }}"
@@ -55,7 +63,7 @@ jobs:
         run: |
           if ! git diff --quiet; then
             nix build ".#${{ matrix.package }}" --print-build-logs
-            nix flake check --print-build-logs
+            nix flake check --keep-going --print-build-logs
           fi
 
       - name: Read package version

@@ -16,6 +16,7 @@ preserve the repository's authorization warning in user-facing documentation.
 - Packages live in `packages/<name>/package.nix`.
 - A package may also contain a tool-family `build.nix`, `nix-update-args`,
   `update-owner`, patches, or a custom `update.py`.
+- `assets/` contains hand-maintained README and repository artwork.
 - Repository automation lives in `scripts/` and `.github/workflows/`.
 
 ## Build, Test, and Development Commands
@@ -40,10 +41,13 @@ preserve the repository's authorization warning in user-facing documentation.
 - Do not add package maintainers until the repository adopts a maintainer
   policy.
 - Declare another in-repository package as a function argument when it is a
-  dependency. The shared scope then resolves it to this repository's package.
-  For example, OpenVAS receives this repository's `nmap`, not `pkgs.nmap`.
+  dependency. The shared scope then resolves it to this repository's package
+  rather than the same-named package from Nixpkgs.
 - Keep shared build functions for one tool family in that tool's directory;
   generic discovery must not name or configure individual tools.
+- When one derivation installs several entry points, expose each useful command
+  through a small package directory with its own `meta.mainProgram`. Reuse the
+  original derivation output instead of rebuilding it.
 - Do not add a default package. Every package is selected explicitly.
 - Linux-only tools must set `meta.platforms = lib.platforms.linux`.
 
@@ -61,14 +65,13 @@ Keep the version and source hash in the package expression whenever possible so
 app and CI pass those arguments to `nix-update`.
 
 Use `packages/<name>/update.py` only when `nix-update` cannot discover the
-upstream release. Nmap is the current exception because releases are published
-on nmap.org rather than as discoverable GitHub releases.
+upstream release or update its source expression correctly. Keep custom
+updaters package-local.
 
 When several outputs share one source, choose one update owner and add an
 `update-owner` file to the other package directories. The file contains the
-owner package name. The OpenVAS Rust binaries, workspace, and C scanner are
-updated atomically through `openvas`; its package expression owns the shared
-upstream source.
+owner package name. The owner package expression contains the shared version,
+source, and hash so every dependent output updates atomically.
 
 Test updater changes by temporarily using an older version, running the update,
 and confirming the version and hashes are corrected. The normal entry point is:
@@ -88,6 +91,23 @@ flake metadata. After adding, removing, renaming, or updating a package, run:
 ```
 
 CI rejects stale generated content.
+
+Content outside the generated markers and files under `assets/` are maintained
+by hand. Preserve the authorization warning near the beginning of `README.md`.
+
+## Automation
+
+- CI checks generated documentation and runs `nix flake check` for pushes and
+  pull requests.
+- CI and updater workflows share unchanged Nix store paths through GitHub
+  Actions cache. Keep the full flake check dependency-aware instead of adding
+  brittle path-based package filters.
+- Scheduled workflows propose package and flake-input updates with pull
+  requests.
+- Automation must never merge pull requests without an explicit repository
+  policy change.
+- Local pre-commit hooks are optional. CI is authoritative, so validation must
+  remain runnable through the documented commands without hooks.
 
 ## Pull Request Checklist
 
