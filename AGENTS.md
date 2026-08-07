@@ -73,8 +73,11 @@ When several outputs share one source, choose one update owner and add an
 owner package name. The owner package expression contains the shared version,
 source, and hash so every dependent output updates atomically.
 
-Test updater changes by temporarily using an older version, running the update,
-and confirming the version and hashes are corrected. The normal entry point is:
+Every new package must have a verified updater before it is merged. Verify it
+by temporarily downgrading the package expression one version behind the
+current release, running the update, and confirming the updater restores the
+correct version and hashes. Apply the same check whenever an updater or its
+arguments change. The normal entry point is:
 
 ```console
 nix run .#update -- <package>
@@ -115,6 +118,8 @@ by hand. Preserve the authorization warning near the beginning of `README.md`.
 - Build every directly affected package.
 - Run `nix flake check`.
 - Run `./scripts/generate-package-docs.py --check`.
+- For a new package, verify the updater by downgrading one version and running
+  `nix run .#update -- <package>`.
 - Explain any intentional divergence from upstream or the corresponding
   Nixpkgs package.
 - Include the commands used for verification.
