@@ -1,0 +1,80 @@
+name: Update packages
+
+on:
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to update; leave empty to update all packages
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.packages.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: packages
+        env:
+          REQUESTED_PACKAGE: ${{ inputs.package }}
+        run: |
+          if [[ -n "$REQUESTED_PACKAGE" ]]; then
+            packages=$(jq --compact-output --null-input \
+              --arg package "$REQUESTED_PACKAGE" \
+              '[$package]')
+          else
+            packages=$(./scripts/update.py --list-updates)
+          fi
+          echo "packages=$packages" >> "$GITHUB_OUTPUT"
+
+  update:
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.discover.outputs.packages) }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+
+      - name: Update ${{ matrix.package }}
+        run: nix run .#update -- "${{ matrix.package }}"
+
+      - name: Regenerate README package table
+        run: ./scripts/generate-package-docs.py
+
+      - name: Verify update
+        run: |
+          if ! git diff --quiet; then
+            nix build ".#${{ matrix.package }}" --print-build-logs
+            nix flake check --print-build-logs
+          fi
+
+      - name: Read package version
+        id: package
+        run: |
+          version=$(nix eval --raw ".#${{ matrix.package }}.version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "${{ matrix.package }}: update to ${{ steps.package.outputs.version }}"
+          title: "${{ matrix.package }}: update to ${{ steps.package.outputs.version }}"
+          body: |
+            Automated update of `${{ matrix.package }}` to `${{ steps.package.outputs.version }}`.
+
+            The updated package and the full flake check were verified before this pull request was opened.
+          branch: "updates/${{ matrix.package }}"
+          delete-branch: true
+          labels: |
+            automated
+            dependencies
