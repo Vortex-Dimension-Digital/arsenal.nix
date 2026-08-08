@@ -23,11 +23,11 @@ let
         '';
       };
 
-      # Nixpkgs names the derivation `bloodhound-py`, but the PyPI distribution
-      # (and therefore the installed `.dist-info`) is `bloodhound`, so the
-      # pythonMetadataCheckPhase fails to look up `bloodhound-py`. Align the
-      # derivation pname with the real distribution name.
-      bloodhound-py = super.bloodhound-py.overridePythonAttrs (_: {
+      # The pinned Nixpkgs exposes this as `bloodhound-py`, but the distribution
+      # and installed `.dist-info` are named `bloodhound`. Current Nixpkgs has
+      # adopted the latter name, so use it here while retaining compatibility
+      # with the pinned package set.
+      bloodhound = (super.bloodhound or super.bloodhound-py).overridePythonAttrs (_: {
         pname = "bloodhound";
       });
     };
@@ -50,7 +50,7 @@ python.pkgs.buildPythonApplication (finalAttrs: {
   pythonRemoveDeps = [
     # Fail to detect dev version requirement
     "neo4j"
-    # No python package in nixpkgs; use bloodhound-py instead.
+    # No python package in nixpkgs; use bloodhound instead.
     "bloodhound-ce"
   ];
 
@@ -79,7 +79,7 @@ python.pkgs.buildPythonApplication (finalAttrs: {
     argcomplete
     asyauth
     beautifulsoup4
-    bloodhound-py
+    bloodhound
     certipy-ad
     dploot
     dsinternals
