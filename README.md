@@ -41,7 +41,7 @@ packages.
 | [`nerva`](packages/nerva/package.nix) | Fingerprinting CLI tool for various protocols | 1.64.3 |
 | [`netexec`](packages/netexec/package.nix) | Network service exploitation tool (maintained fork of CrackMapExec) | 1.5.1 |
 | [`nmap`](packages/nmap/package.nix) | Free and open source utility for network discovery and security auditing | 7.991 |
-| [`nuclei`](packages/nuclei/package.nix) | Tool for configurable targeted scanning | 3.11.0 |
+| [`nuclei`](packages/nuclei/package.nix) | Tool for configurable targeted scanning | 3.11.1 |
 | [`nuclei-templates`](packages/nuclei-templates/package.nix) | Templates for the nuclei engine to find security vulnerabilities | 10.4.7 |
 | [`nxcdb`](packages/nxcdb/package.nix) | Database navigator for NetExec | 1.5.1 |
 | [`onesixtyone`](packages/onesixtyone/package.nix) | Fast SNMP Scanner | 0.3.4-unstable-2025-08-30 |
