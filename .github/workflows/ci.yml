@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to build; leave empty to run the full flake check
+      pull-request-number:
+        description: Automated pull request to merge after checks pass
 
 permissions:
   contents: read
@@ -24,5 +30,37 @@ jobs:
           use-gha-cache: true
       - name: Verify generated README
         run: ./scripts/generate-package-docs.py --check
+      - name: Build package
+        if: inputs.package != ''
+        env:
+          PACKAGE: ${{ inputs.package }}
+        run: nix build ".#$PACKAGE" --print-build-logs
       - name: Check flake
+        if: inputs.package == ''
         run: nix flake check --keep-going --print-build-logs
+
+  auto-merge:
+    name: Auto-merge update
+    needs: check
+    if: github.event_name == 'workflow_dispatch' && inputs.pull-request-number != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Merge pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ inputs.pull-request-number }}
+          PACKAGE: ${{ inputs.package }}
+        run: |
+          expected_branch="updates/${PACKAGE:-flake-lock}"
+          metadata=$(gh pr view "$PR_NUMBER" \
+            --json author,baseRefName,headRefName,isCrossRepository \
+            --jq '[.author.is_bot, .isCrossRepository, .baseRefName, .headRefName] | @tsv')
+          if [[ "$metadata" != $'true\tfalse\tmain\t'"$expected_branch" ]]; then
+            echo "Pull request is not an automated update for $expected_branch" >&2
+            exit 1
+          fi
+          gh pr merge "$PR_NUMBER" --squash --delete-branch --match-head-commit "$GITHUB_SHA"

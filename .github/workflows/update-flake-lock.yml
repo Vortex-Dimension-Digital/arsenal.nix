@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -19,18 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: cachix/install-nix-action@v31
-      - uses: DeterminateSystems/magic-nix-cache-action@v14
-        with:
-          use-flakehub: false
-          use-gha-cache: true
 
       - name: Update flake inputs
         run: nix flake update
 
-      - name: Verify update
-        run: nix flake check --keep-going --print-build-logs
-
       - name: Create pull request
+        id: cpr
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "flake.lock: update inputs"
@@ -41,3 +36,14 @@ jobs:
           labels: |
             automated
             dependencies
+
+      - name: Run pull request checks
+        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ steps.cpr.outputs.pull-request-branch }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          gh workflow run ci.yml \
+            --ref "$PR_BRANCH" \
+            --field pull-request-number="$PR_NUMBER"

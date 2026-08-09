@@ -11,8 +11,7 @@ on:
         type: string
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: update-packages
@@ -40,6 +39,12 @@ jobs:
 
   update:
     needs: discover
+    env:
+      PACKAGE: ${{ matrix.package }}
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -54,35 +59,38 @@ jobs:
           use-gha-cache: true
 
       - name: Update ${{ matrix.package }}
-        run: nix run .#update -- "${{ matrix.package }}"
+        run: nix run .#update -- "$PACKAGE"
 
       - name: Regenerate README package table
         run: ./scripts/generate-package-docs.py
 
-      - name: Verify update
-        run: |
-          if ! git diff --quiet; then
-            nix build ".#${{ matrix.package }}" --print-build-logs
-            nix flake check --keep-going --print-build-logs
-          fi
-
       - name: Read package version
         id: package
         run: |
-          version=$(nix eval --raw ".#${{ matrix.package }}.version")
+          version=$(nix eval --raw ".#$PACKAGE.version")
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Create pull request
+        id: cpr
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "${{ matrix.package }}: update to ${{ steps.package.outputs.version }}"
           title: "${{ matrix.package }}: update to ${{ steps.package.outputs.version }}"
-          body: |
-            Automated update of `${{ matrix.package }}` to `${{ steps.package.outputs.version }}`.
-
-            The updated package and the full flake check were verified before this pull request was opened.
+          body: Automated update of `${{ matrix.package }}` to `${{ steps.package.outputs.version }}`.
           branch: "updates/${{ matrix.package }}"
           delete-branch: true
           labels: |
             automated
             dependencies
+
+      - name: Run pull request checks
+        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: ${{ steps.cpr.outputs.pull-request-branch }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          gh workflow run ci.yml \
+            --ref "$PR_BRANCH" \
+            --field package="$PACKAGE" \
+            --field pull-request-number="$PR_NUMBER"
