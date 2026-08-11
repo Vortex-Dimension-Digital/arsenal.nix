@@ -684,10 +684,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1rnnj8nbvqcn55diifkmz82alix5ws5dgh18kpbxjd6rdrdddd9l";
+      sha256 = "026v93kja19bfslnwi9xfq2dj4r89kkwdprim4whjg6h3n4lz9zg";
       type = "gem";
     };
-    version = "0.9.1";
+    version = "0.9.2";
   };
   ipaddr = {
     groups = [ "default" ];
@@ -1420,10 +1420,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0j4g0wj90kiirgck0li9vxx2yc2jf0n0z74jxlxj7w88npcb23h5";
+      sha256 = "1i5qp9yqccjr8jq865n3qayknckq6vjv7l7s9cv19p0wfnlp8i0c";
       type = "gem";
     };
-    version = "4.1.2";
+    version = "4.1.3";
   };
   rdoc = {
     groups = [ "default" ];
@@ -1440,10 +1440,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1mxj6s3si6xl29wh5km53x0dnwq3sy0dpz308mdgh7vvafcc2xqf";
+      sha256 = "156a5lslah92dhkglp1gk0xjwgc1gy4phjidhdw0ryjd5kms0h17";
       type = "gem";
     };
-    version = "3.1.33";
+    version = "3.1.34";
   };
   redcarpet = {
     groups = [ "default" ];
