@@ -30,10 +30,10 @@ packages.
 | [`dnsx`](packages/dnsx/package.nix) | Fast and multi-purpose DNS toolkit | 1.3.0 |
 | [`enum4linux-ng`](packages/enum4linux-ng/package.nix) | Windows/Samba enumeration tool | 1.3.10 |
 | [`feed-filter`](packages/feed-filter/package.nix) | Utility for filtering OpenVAS feed data | 23.50.15 |
-| [`greenbone-certdata-sync`](packages/greenbone-certdata-sync/package.nix) | Compatibility command for synchronizing Greenbone CERT data | 25.4.1 |
-| [`greenbone-feed-sync`](packages/greenbone-feed-sync/package.nix) | Tool for downloading the Greenbone Community Feed | 25.4.1 |
-| [`greenbone-nvt-sync`](packages/greenbone-nvt-sync/package.nix) | Compatibility command for synchronizing Greenbone vulnerability tests | 25.4.1 |
-| [`greenbone-scapdata-sync`](packages/greenbone-scapdata-sync/package.nix) | Compatibility command for synchronizing Greenbone SCAP data | 25.4.1 |
+| [`greenbone-certdata-sync`](packages/greenbone-certdata-sync/package.nix) | Compatibility command for synchronizing Greenbone CERT data | 25.4.2 |
+| [`greenbone-feed-sync`](packages/greenbone-feed-sync/package.nix) | Tool for downloading the Greenbone Community Feed | 25.4.2 |
+| [`greenbone-nvt-sync`](packages/greenbone-nvt-sync/package.nix) | Compatibility command for synchronizing Greenbone vulnerability tests | 25.4.2 |
+| [`greenbone-scapdata-sync`](packages/greenbone-scapdata-sync/package.nix) | Compatibility command for synchronizing Greenbone SCAP data | 25.4.2 |
 | [`gvm-libs`](packages/gvm-libs/package.nix) | Libraries module for the Greenbone Vulnerability Management Solution | 23.9.2 |
 | [`httpx`](packages/httpx/package.nix) | Fast and multi-purpose HTTP toolkit | 1.10.0 |
 | [`metasploit`](packages/metasploit/package.nix) | Metasploit Framework - a collection of exploits | 6.5.1 |
