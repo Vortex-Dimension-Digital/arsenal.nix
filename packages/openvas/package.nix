@@ -43,13 +43,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "openvas-scanner";
-  version = "23.50.15";
+  version = "23.50.16";
 
   src = fetchFromGitHub {
     owner = "greenbone";
     repo = "openvas-scanner";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-YwedQjsGcxmQDlefTewK8H0AF1MDgeD7VpHuqSmIo1g=";
+    hash = "sha256-Madq37yWm2KIlZM/7nX0HipcUr9L76qSwpXt/awALHc=";
   };
 
   patches = [ ./fix-gcc-warnings.patch ];
