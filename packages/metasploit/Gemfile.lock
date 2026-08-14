@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/rapid7/metasploit-framework
-  revision: 77223f289965af330765014a89fa0ceee5318255
-  ref: refs/tags/6.5.1
+  revision: 75120f414c183dcb05c5d99d04f2d62bf538555a
+  ref: refs/tags/6.5.2
   specs:
-    metasploit-framework (6.5.1)
+    metasploit-framework (6.5.2)
       aarch64
       abbrev
       actionpack (~> 8.0.5)
@@ -416,7 +416,7 @@ GEM
     puma (8.0.2)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.6)
+    rack (3.2.7)
     rack-protection (4.2.1)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
