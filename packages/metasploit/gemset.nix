@@ -124,10 +124,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1g14jpzmagf0ahl4lzlhdrljjlbfmqlf4ai1ds6p6fk0cl3mypsc";
+      sha256 = "1v424xj0szmlki0g2zzd9f5i1yq8giccdn7w3q57kav8l3bcgz4p";
       type = "gem";
     };
-    version = "1.1280.0";
+    version = "1.1281.0";
   };
   aws-sdk-core = {
     groups = [ "default" ];
@@ -1490,10 +1490,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0b755sz6h9hn3f7qbx033h4j7pwx1r2ykyzqil8alpp8983li0h0";
+      sha256 = "0gpdvf8qqh0mm1c90vip1mpjgqrlgvaydyg5wbi3bl8dm3m1qghi";
       type = "gem";
     };
-    version = "0.1.16";
+    version = "0.1.17";
   };
   rex-core = {
     groups = [ "default" ];
