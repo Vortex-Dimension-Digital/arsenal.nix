@@ -144,10 +144,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1a0z35sz9h6qy8wfv6wn8ycaryb3x55fgl7sxxbbxsyqm135nm57";
+      sha256 = "1dbvsad69skyqzjv103i6fhx9d0w7rmmh1ydr1znvks1h4fknlbx";
       type = "gem";
     };
-    version = "1.636.0";
+    version = "1.637.0";
   };
   aws-sdk-ec2instanceconnect = {
     groups = [ "default" ];
@@ -1740,10 +1740,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "00nafgqjhwa504xrjv32v0757a2xcvspsia8s7mp4n62nm2yfy8a";
+      sha256 = "0z4d1wgn8868ll0zkjgii21cskhvydry8kfayribcjd86zbljz7p";
       type = "gem";
     };
-    version = "3.4.1";
+    version = "3.5.0";
   };
   sawyer = {
     groups = [ "default" ];

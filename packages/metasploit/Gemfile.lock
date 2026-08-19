@@ -182,7 +182,7 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-ec2 (1.636.0)
+    aws-sdk-ec2 (1.637.0)
       aws-sdk-core (~> 3, >= 3.254.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-ec2instanceconnect (1.74.0)
@@ -539,7 +539,7 @@ GEM
       windows_error (>= 0.1.4)
     rubyntlm (0.6.5)
       base64
-    rubyzip (3.4.1)
+    rubyzip (3.5.0)
     sawyer (0.9.3)
       addressable (>= 2.3.5)
       faraday (>= 0.17.3, < 3)
