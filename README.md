@@ -29,7 +29,7 @@ packages.
 | --- | --- | --- |
 | [`dnsx`](packages/dnsx/package.nix) | Fast and multi-purpose DNS toolkit | 1.3.0 |
 | [`enum4linux-ng`](packages/enum4linux-ng/package.nix) | Windows/Samba enumeration tool | 1.3.10 |
-| [`feed-filter`](packages/feed-filter/package.nix) | Utility for filtering OpenVAS feed data | 23.50.21 |
+| [`feed-filter`](packages/feed-filter/package.nix) | Utility for filtering OpenVAS feed data | 23.50.22 |
 | [`greenbone-certdata-sync`](packages/greenbone-certdata-sync/package.nix) | Compatibility command for synchronizing Greenbone CERT data | 25.4.2 |
 | [`greenbone-feed-sync`](packages/greenbone-feed-sync/package.nix) | Tool for downloading the Greenbone Community Feed | 25.4.2 |
 | [`greenbone-nvt-sync`](packages/greenbone-nvt-sync/package.nix) | Compatibility command for synchronizing Greenbone vulnerability tests | 25.4.2 |
@@ -45,10 +45,10 @@ packages.
 | [`nuclei-templates`](packages/nuclei-templates/package.nix) | Templates for the nuclei engine to find security vulnerabilities | 10.4.8 |
 | [`nxcdb`](packages/nxcdb/package.nix) | Database navigator for NetExec | 1.5.1 |
 | [`onesixtyone`](packages/onesixtyone/package.nix) | Fast SNMP Scanner | 0.3.4-unstable-2025-08-30 |
-| [`openvas`](packages/openvas/package.nix) | Scanner component for Greenbone Community Edition | 23.50.21 |
-| [`openvasd`](packages/openvasd/package.nix) | Rust scanner service for OpenVAS | 23.50.21 |
-| [`scannerctl`](packages/scannerctl/package.nix) | CLI frontend for OpenVAS scanner utilities | 23.50.21 |
-| [`scannerlib`](packages/scannerlib/package.nix) | OpenVAS Rust workspace | 23.50.21 |
+| [`openvas`](packages/openvas/package.nix) | Scanner component for Greenbone Community Edition | 23.50.22 |
+| [`openvasd`](packages/openvasd/package.nix) | Rust scanner service for OpenVAS | 23.50.22 |
+| [`scannerctl`](packages/scannerctl/package.nix) | CLI frontend for OpenVAS scanner utilities | 23.50.22 |
+| [`scannerlib`](packages/scannerlib/package.nix) | OpenVAS Rust workspace | 23.50.22 |
 | [`seclists`](packages/seclists/package.nix) | Collection of multiple types of lists used during security assessments, collected in one place | 2026.1 |
 | [`smbmap`](packages/smbmap/package.nix) | SMB enumeration tool | 1.10.8 |
 | [`ssh-audit`](packages/ssh-audit/package.nix) | Tool for ssh server auditing | 3.9.0 |
