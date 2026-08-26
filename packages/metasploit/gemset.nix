@@ -124,10 +124,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1v424xj0szmlki0g2zzd9f5i1yq8giccdn7w3q57kav8l3bcgz4p";
+      sha256 = "064c62mck0rsrlmix74mrpp0vv4gjnrznns4av5d932g5snw9iyn";
       type = "gem";
     };
-    version = "1.1281.0";
+    version = "1.1282.0";
   };
   aws-sdk-core = {
     groups = [ "default" ];
@@ -144,10 +144,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "00383p597x4n3dl9knmvpjxldv226hzrv9qaj5ry3a3yby9zz67a";
+      sha256 = "0ispzi9nksnwss5ddqpriz0dkkkh3bdmq7xy8dkig8k9zfc4xjpm";
       type = "gem";
     };
-    version = "1.638.0";
+    version = "1.639.0";
   };
   aws-sdk-ec2instanceconnect = {
     groups = [ "default" ];
@@ -1026,10 +1026,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1a32l4x73hz200cm587bc29q8q9az278syw3x6fkc9d1lv5y0wxa";
+      sha256 = "0wklahcafcib6jwrr3angj7zzcb9csq3c0xj3axldb8w9wyhqcds";
       type = "gem";
     };
-    version = "0.2.2";
+    version = "0.3.0";
   };
   net-sftp = {
     groups = [ "default" ];
