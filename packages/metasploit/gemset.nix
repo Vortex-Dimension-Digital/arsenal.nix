@@ -144,10 +144,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0ispzi9nksnwss5ddqpriz0dkkkh3bdmq7xy8dkig8k9zfc4xjpm";
+      sha256 = "11j64s3920lw509xzabwjc26l1wvhb34w494fsjbwbpn2x3nlxis";
       type = "gem";
     };
-    version = "1.639.0";
+    version = "1.640.0";
   };
   aws-sdk-ec2instanceconnect = {
     groups = [ "default" ];
@@ -844,12 +844,12 @@
     platforms = [ ];
     source = {
       fetchSubmodules = false;
-      rev = "75120f414c183dcb05c5d99d04f2d62bf538555a";
-      sha256 = "06z8jqr6k51gdzc9gvsfbn2zhgslxrvycwvv4xhv897g9bzql5yp";
+      rev = "852d34c265298ab4fe8136d3b73e7639d61cd69e";
+      sha256 = "17v4vc38ah60b8kbpsmn0gv6qn4i91schc1bgldgs8hr3hmd53di";
       type = "git";
       url = "https://github.com/rapid7/metasploit-framework";
     };
-    version = "6.5.2";
+    version = "6.5.3";
   };
   metasploit-model = {
     groups = [ "default" ];
