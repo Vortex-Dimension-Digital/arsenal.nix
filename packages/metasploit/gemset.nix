@@ -144,10 +144,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "11j64s3920lw509xzabwjc26l1wvhb34w494fsjbwbpn2x3nlxis";
+      sha256 = "0iy48w3365pn11hs15k3rghf3s050qv9id78nn1cdbgpsl9r090z";
       type = "gem";
     };
-    version = "1.640.0";
+    version = "1.641.0";
   };
   aws-sdk-ec2instanceconnect = {
     groups = [ "default" ];
