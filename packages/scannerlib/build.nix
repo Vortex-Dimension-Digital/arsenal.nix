@@ -46,7 +46,8 @@ let
 
   libpcapStatic = libpcap.overrideAttrs (old: {
     dontDisableStatic = true;
-    configureFlags = (old.configureFlags or [ ]) ++ [
+    configureFlags = (lib.remove "--enable-rdma" (old.configureFlags or [ ])) ++ [
+      "--disable-rdma"
       "--disable-dbus"
       "--without-libnl"
     ];
