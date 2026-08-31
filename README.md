@@ -35,7 +35,7 @@ packages.
 | [`greenbone-nvt-sync`](packages/greenbone-nvt-sync/package.nix) | Compatibility command for synchronizing Greenbone vulnerability tests | 25.4.2 |
 | [`greenbone-scapdata-sync`](packages/greenbone-scapdata-sync/package.nix) | Compatibility command for synchronizing Greenbone SCAP data | 25.4.2 |
 | [`gvm-libs`](packages/gvm-libs/package.nix) | Libraries module for the Greenbone Vulnerability Management Solution | 23.9.3 |
-| [`httpx`](packages/httpx/package.nix) | Fast and multi-purpose HTTP toolkit | 1.10.0 |
+| [`httpx`](packages/httpx/package.nix) | Fast and multi-purpose HTTP toolkit | 1.11.0 |
 | [`metasploit`](packages/metasploit/package.nix) | Metasploit Framework - a collection of exploits | 6.5.3 |
 | [`naabu`](packages/naabu/package.nix) | Fast SYN/CONNECT port scanner | 2.6.1 |
 | [`nerva`](packages/nerva/package.nix) | Fingerprinting CLI tool for various protocols | 1.69.0 |
