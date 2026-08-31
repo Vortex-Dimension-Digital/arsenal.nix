@@ -27,7 +27,7 @@ packages.
 
 | Package | Description | Version |
 | --- | --- | --- |
-| [`dnsx`](packages/dnsx/package.nix) | Fast and multi-purpose DNS toolkit | 1.3.0 |
+| [`dnsx`](packages/dnsx/package.nix) | Fast and multi-purpose DNS toolkit | 1.3.1 |
 | [`enum4linux-ng`](packages/enum4linux-ng/package.nix) | Windows/Samba enumeration tool | 1.3.10 |
 | [`feed-filter`](packages/feed-filter/package.nix) | Utility for filtering OpenVAS feed data | 23.50.23 |
 | [`greenbone-certdata-sync`](packages/greenbone-certdata-sync/package.nix) | Compatibility command for synchronizing Greenbone CERT data | 25.4.2 |
