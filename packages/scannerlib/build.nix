@@ -11,6 +11,7 @@
   makeWrapper,
   net-snmp,
   openvas,
+  openssl,
   perl,
   pkg-config,
   runCommand,
@@ -162,7 +163,17 @@ let
       rustPlatform.bindgenHook
     ];
 
-    buildInputs = [ net-snmp ];
+    # Upstream Dockerfile's rust stage installs libsnmp-dev (which pulls
+    # libssl-dev on Debian) and relies on openssl-sys pkg-config probing for
+    # sequoia-openpgp:crypto-openssl and snmp2:v3. In Nix, net-snmp alone does
+    # not propagate openssl .dev headers, so expose openssl explicitly.
+    # bzip2/sqlite/zstd remain vendored (bzip2:libbz2-rs-sys, sqlx:bundled
+    # sqlite, zstd:zstd-sys vendored) — no system libs needed, matching
+    # Dockerfile's minimal apt list (capnproto, libclang-dev, libsnmp-dev).
+    buildInputs = [
+      net-snmp
+      openssl
+    ];
 
     # Direct style (per rust/doc/build.md Example 2) + Bundle style (Example 1 / Dockerfile)
     # Keep both for compatibility; build_support.rs prefers Direct when set.
