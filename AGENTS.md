@@ -129,5 +129,4 @@ by hand. Preserve the authorization warning near the beginning of `README.md`.
 - Never fetch from the network during a package build.
 - Pin sources and dependencies with cryptographic hashes.
 - Do not weaken sandboxing or tests merely to make a build pass.
-- Changes should package and test security tools; they must not execute scans
-  against external targets.
+
