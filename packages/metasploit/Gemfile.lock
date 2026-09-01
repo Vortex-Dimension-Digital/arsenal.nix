@@ -228,7 +228,7 @@ GEM
     domain_name (0.6.20260829)
     drb (2.2.3)
     ed25519 (1.4.0)
-    elftools (2.0.0)
+    elftools (2.1.0)
       bindata (>= 2, < 4)
     em-http-request (1.1.7)
       addressable (>= 2.3.4)
@@ -497,7 +497,7 @@ GEM
       rex-arch
     rex-ole (0.1.9)
       rex-text
-    rex-powershell (0.1.103)
+    rex-powershell (0.1.105)
       bigdecimal
       rex-random_identifier
       rex-text
