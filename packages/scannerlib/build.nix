@@ -14,6 +14,7 @@
   openssl,
   perl,
   pkg-config,
+  removeReferencesTo,
   runCommand,
   rustPlatform,
 }:
@@ -204,6 +205,13 @@ let
     platforms = lib.platforms.linux;
   };
 
+  removeStaticArchiveReferences = ''
+    # The Kerberos archives are fully linked into the binaries. Remove their
+    # embedded build paths so Nix does not retain the archives at runtime.
+    find "$out/bin" -type f -exec \
+      remove-references-to -t ${lib.getLib krb5OpenvasStatic} {} +
+  '';
+
   mkBinary =
     {
       bin,
@@ -216,7 +224,10 @@ let
         BIN_VERSION = version;
         pname = bin;
         cargoExtraArgs = "--bin ${bin}";
-        nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ makeWrapper ];
+        nativeBuildInputs = commonArgs.nativeBuildInputs ++ [
+          makeWrapper
+          removeReferencesTo
+        ];
         disallowedReferences = staticBuildReferences;
 
         preCheck = ''
@@ -228,6 +239,7 @@ let
         postFixup = ''
           wrapProgram "$out/bin/${bin}" \
             --set-default SSL_CERT_FILE ${cacert}/etc/ssl/certs/ca-bundle.crt
+          ${removeStaticArchiveReferences}
         '';
 
         meta = commonMeta // { mainProgram = bin; } // meta;
@@ -240,7 +252,10 @@ let
       inherit cargoArtifacts postPatch;
       BIN_VERSION = version;
       doCheck = false;
-      nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ makeWrapper ];
+      nativeBuildInputs = commonArgs.nativeBuildInputs ++ [
+        makeWrapper
+        removeReferencesTo
+      ];
       disallowedReferences = staticBuildReferences;
 
       postFixup = ''
@@ -248,6 +263,7 @@ let
           wrapProgram "$program" \
             --set-default SSL_CERT_FILE ${cacert}/etc/ssl/certs/ca-bundle.crt
         done
+        ${removeStaticArchiveReferences}
       '';
 
       meta = commonMeta // {
