@@ -19,6 +19,18 @@
 let
   inherit (openvas) src version;
 
+  # Upstream reference: greenbone/openvas-scanner
+  # - .docker/prod.Dockerfile: krb5-build (krb5 1.22.2, --prefix=/opt/krb5-static,
+  #   --enable-static --disable-shared --without-system-verto --without-libedit
+  #   --without-keyutils --disable-rpath, 7 subdirs) + pcap-build (libpcap 1.10.6,
+  #   --disable-shared --disable-dbus) + build-archives (/archives bundle)
+  # - rust/doc/build.md: Bundle (OPENVAS_ARCHIVES/LIBPCAP_LIBDIR) is Dockerfile default;
+  #   Direct (OPENVAS_KRB5_ARCHIVES/OPENVAS_KRB5_INCLUDE_DIR/LIBPCAP_LIBDIR) is
+  #   supported alternative (Example 2). This file uses Direct style to avoid
+  #   an extra aggregator derivation while staying compatible with
+  #   crates/nasl-c-lib/build_support.rs:ArchiveConfig.
+  # - rust/crates/nasl-c-lib/README.md: build-cache/archives layout
+
   libpcapStatic = libpcap.overrideAttrs (old: {
     dontDisableStatic = true;
     configureFlags = (old.configureFlags or [ ]) ++ [
