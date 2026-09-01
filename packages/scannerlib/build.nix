@@ -13,6 +13,7 @@
   openvas,
   perl,
   pkg-config,
+  runCommand,
   rustPlatform,
 }:
 
@@ -123,7 +124,30 @@ let
     krb5OpenvasStatic
     libpcapArchiveDir
     libpcapStatic
+    scannerlibArchives
   ];
+
+  # Bundle parity with .docker/prod.Dockerfile:build-archives (/archives)
+  # Upstream's Rust stage sets OPENVAS_ARCHIVES=/archives and
+  # LIBPCAP_LIBDIR=/archives (flat layout: 6 *.a + include/). This bundle
+  # mirrors that layout for consumers that rely on the bundle fallback
+  # (build_support.rs: resolve_default_lookup → build-cache/archives).
+  # Direct vars OPENVAS_KRB5_* remain primary — build_support prefers them
+  # when set (see libopenvas-krb5-sys/build.rs). Keeping both styles makes
+  # the build compatible with either configuration per rust/doc/build.md.
+  scannerlibArchives = runCommand "scannerlib-archives" { } ''
+    mkdir -p $out/include/gssapi $out/include/krb5
+    ln -s ${lib.getLib libpcapStatic}/lib/libpcap.a $out/libpcap.a
+    for archive in ${lib.escapeShellArgs krb5ArchiveNames}; do
+      ln -s ${krb5OpenvasStatic}/lib/$archive $out/$archive
+    done
+    cp -r ${krb5OpenvasStatic}/include/* $out/include/
+    cp ${lib.getDev libpcapStatic}/include/pcap.h $out/include/pcap.h
+    if [ -d ${lib.getDev libpcapStatic}/include/pcap ]; then
+      mkdir -p $out/include/pcap
+      cp -r ${lib.getDev libpcapStatic}/include/pcap/* $out/include/pcap/
+    fi
+  '';
 
   commonArgs = {
     pname = "scannerlib";
@@ -140,11 +164,17 @@ let
 
     buildInputs = [ net-snmp ];
 
+    # Direct style (per rust/doc/build.md Example 2) + Bundle style (Example 1 / Dockerfile)
+    # Keep both for compatibility; build_support.rs prefers Direct when set.
+    # LIBPCAP_LIBDIR and OPENVAS_ARCHIVES both point to the bundle here to
+    # mirror prod.Dockerfile's `ENV OPENVAS_ARCHIVES=/archives
+    # LIBPCAP_LIBDIR=/archives` (flat /archives with 6 libs).
+    OPENVAS_ARCHIVES = "${scannerlibArchives}";
     OPENVAS_KRB5_ARCHIVES = lib.concatMapStringsSep ":" (
       archive: "${krb5OpenvasStatic}/lib/${archive}"
     ) krb5ArchiveNames;
     OPENVAS_KRB5_INCLUDE_DIR = "${krb5OpenvasStatic}/include";
-    LIBPCAP_LIBDIR = "${libpcapArchiveDir}";
+    LIBPCAP_LIBDIR = "${scannerlibArchives}";
   };
 
   cargoArtifacts = craneLib.buildDepsOnly commonArgs;
