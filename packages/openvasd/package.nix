@@ -1,6 +1,9 @@
-{ callPackage }:
+{ scannerlib }:
 
-(callPackage ../scannerlib/build.nix { }).mkBinary {
-  bin = "openvasd";
-  meta.description = "Rust scanner service for OpenVAS";
+scannerlib
+// {
+  meta = scannerlib.meta // {
+    description = "Rust scanner service for OpenVAS";
+    mainProgram = "openvasd";
+  };
 }

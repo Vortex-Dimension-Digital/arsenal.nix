@@ -1,6 +1,9 @@
-{ callPackage }:
+{ scannerlib }:
 
-(callPackage ../scannerlib/build.nix { }).mkBinary {
-  bin = "feed-filter";
-  meta.description = "Utility for filtering OpenVAS feed data";
+scannerlib
+// {
+  meta = scannerlib.meta // {
+    description = "Utility for filtering OpenVAS feed data";
+    mainProgram = "feed-filter";
+  };
 }
