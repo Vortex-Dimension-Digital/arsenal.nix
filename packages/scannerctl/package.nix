@@ -1,6 +1,9 @@
-{ callPackage }:
+{ scannerlib }:
 
-(callPackage ../scannerlib/build.nix { }).mkBinary {
-  bin = "scannerctl";
-  meta.description = "CLI frontend for OpenVAS scanner utilities";
+scannerlib
+// {
+  meta = scannerlib.meta // {
+    description = "CLI frontend for OpenVAS scanner utilities";
+    mainProgram = "scannerctl";
+  };
 }
