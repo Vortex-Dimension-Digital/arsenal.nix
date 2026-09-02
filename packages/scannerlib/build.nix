@@ -104,7 +104,7 @@ let
 
   commonArgs = {
     inherit version;
-    src = craneLib.cleanCargoSource (src + "/rust");
+    src = craneLib.path (src + "/rust");
     strictDeps = true;
     nativeBuildInputs = [
       capnproto
