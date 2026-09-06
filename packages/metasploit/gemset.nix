@@ -424,10 +424,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1x0abdmccikmnahfhcyfzd23lkzs1m8kbq5c4q0y5y6ri5rr64f1";
+      sha256 = "1n9j3j68s5g77sr7lddnllnbqdgfj7slcn96x4sa529vpxa7vqc6";
       type = "gem";
     };
-    version = "2.1.0";
+    version = "2.2.0";
   };
   em-http-request = {
     groups = [ "default" ];
@@ -1200,10 +1200,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0mlkn1vhh9lr7vljibpgspwsswk7mzm8nw6bbr616c9fbj35hlmk";
+      sha256 = "1n0w07z55hsrb803sl20vcmr8hkay1lsff7c1a55ajdnsxgrq1g1";
       type = "gem";
     };
-    version = "2.1.0";
+    version = "2.2.0";
   };
   patch_finder = {
     groups = [ "default" ];
@@ -1690,10 +1690,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "13hcq278vzf5pfswxdc0dvqhkgww0i3kwlj5l1167l34apzibbkv";
+      sha256 = "0adm87959axamsbh9z7hbfgb4g2pvaqwg6y68vsss7lgx5hxwr42";
       type = "gem";
     };
-    version = "6.0.0";
+    version = "7.0.0";
   };
   ruby-mysql = {
     groups = [ "default" ];

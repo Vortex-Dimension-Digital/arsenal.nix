@@ -228,7 +228,7 @@ GEM
     domain_name (0.6.20260902)
     drb (2.2.3)
     ed25519 (1.4.0)
-    elftools (2.1.0)
+    elftools (2.2.0)
       bindata (>= 2, < 4)
     em-http-request (1.1.7)
       addressable (>= 2.3.4)
@@ -399,7 +399,7 @@ GEM
     ostruct (0.6.3)
     packetfu (2.0.0)
       pcaprub (~> 0.13.1)
-    parallel (2.1.0)
+    parallel (2.2.0)
     patch_finder (1.0.2)
     pcaprub (0.13.3)
     pdf-reader (2.16.0)
@@ -528,7 +528,7 @@ GEM
       forwardable
       ipaddr
     rkelly-remix (0.0.7)
-    ruby-macho (6.0.0)
+    ruby-macho (7.0.0)
     ruby-mysql (4.2.1)
     ruby-rc4 (0.1.5)
     ruby_smb (3.3.22)
