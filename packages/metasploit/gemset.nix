@@ -124,10 +124,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1ppin425pfd6agxbyqmav7vb60yl0k94f6h4laqc4zpbcp5sjnqj";
+      sha256 = "1p2qvraa79fl6gq7g69r73bsfpxk231c0c3wp8qhlhys2gd34r02";
       type = "gem";
     };
-    version = "1.1283.0";
+    version = "1.1284.0";
   };
   aws-sdk-core = {
     groups = [ "default" ];
@@ -144,10 +144,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "177514whbsdapxn2svmwwvjdzji6zy784v7l3p40df9kjvhf4jwq";
+      sha256 = "1nh24bfv7wyffj4c5rmh8axwvxjyxda0msc25lf5rpz7ichqj1p6";
       type = "gem";
     };
-    version = "1.644.0";
+    version = "1.645.0";
   };
   aws-sdk-ec2instanceconnect = {
     groups = [ "default" ];
@@ -184,10 +184,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "15pma52a4n5rzgkr8kixvfxc3dmals1s78605rfm1cvm308imlbx";
+      sha256 = "0wzwsfbxfxia6sa66frkq0iv8f8mhiflvklhb05jdn0gfsq5g4fg";
       type = "gem";
     };
-    version = "1.229.0";
+    version = "1.230.0";
   };
   aws-sdk-ssm = {
     groups = [ "default" ];
@@ -734,10 +734,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "17m3qhmq2zg93zrk4i6fvsmn70zgww26jlhwsh632fhcayip83y8";
+      sha256 = "1pqrpn0wkxvhcrwm4i0z9ailjj7if45zkkih0hij2k1q25xpwvcf";
       type = "gem";
     };
-    version = "3.0.1";
+    version = "3.0.2";
   };
   json-schema = {
     groups = [ "default" ];
