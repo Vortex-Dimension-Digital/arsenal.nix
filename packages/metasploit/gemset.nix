@@ -1006,10 +1006,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1px886qvws5zvqphy5cysj8vg01lym0w7vs9wq1h41pk1pjlxaln";
+      sha256 = "0q1nq8mx22v9sn1296s45nm6dni42y3m3s1f4pg5dn3mx4xmgjdm";
       type = "gem";
     };
-    version = "0.6.6";
+    version = "0.6.7";
   };
   net-ldap = {
     groups = [ "default" ];
@@ -1730,10 +1730,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1x8l0d1v88m40mby4jvgal46137cv8gga2lk7zlrxqlsp41380a7";
+      sha256 = "0ixldbb7d8fm8fpkxw6hjz0xirdfy2aa12w7n00lqvsgbj5mvaqx";
       type = "gem";
     };
-    version = "0.6.5";
+    version = "0.6.6";
   };
   rubyzip = {
     groups = [ "default" ];
