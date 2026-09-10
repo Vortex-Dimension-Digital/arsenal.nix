@@ -27,6 +27,7 @@ packages.
 
 | Package | Description | Version |
 | --- | --- | --- |
+| [`cve-bin-tool`](packages/cve-bin-tool/package.nix) | CVE Binary Checker Tool | 3.4 |
 | [`dnsx`](packages/dnsx/package.nix) | Fast and multi-purpose DNS toolkit | 1.3.1 |
 | [`enum4linux-ng`](packages/enum4linux-ng/package.nix) | Windows/Samba enumeration tool | 1.3.10 |
 | [`feed-filter`](packages/feed-filter/package.nix) | Utility for filtering OpenVAS feed data | 23.50.24 |
@@ -53,6 +54,7 @@ packages.
 | [`smbmap`](packages/smbmap/package.nix) | SMB enumeration tool | 1.10.8 |
 | [`ssh-audit`](packages/ssh-audit/package.nix) | Tool for ssh server auditing | 3.9.0 |
 | [`subfinder`](packages/subfinder/package.nix) | Subdomain discovery tool | 2.16.0 |
+| [`testssl`](packages/testssl/package.nix) | CLI tool to check a server's TLS/SSL capabilities | 3.2.4 |
 | [`thc-hydra`](packages/thc-hydra/package.nix) | Very fast network logon cracker which support many different services | 9.7 |
 
 <!-- END GENERATED PACKAGE DOCS -->
