@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/rapid7/metasploit-framework
-  revision: 852d34c265298ab4fe8136d3b73e7639d61cd69e
-  ref: refs/tags/6.5.3
+  revision: a420e80358865eb463e39b713f52f2ee46957b60
+  ref: refs/tags/6.5.4
   specs:
-    metasploit-framework (6.5.3)
+    metasploit-framework (6.5.4)
       aarch64
       abbrev
       actionpack (~> 8.0.5)
@@ -92,7 +92,7 @@ GIT
       rex-mime
       rex-nop
       rex-ole
-      rex-powershell
+      rex-powershell (>= 0.1.105)
       rex-random_identifier
       rex-registry
       rex-rop_builder
@@ -173,7 +173,7 @@ GEM
     arel-helpers (2.17.0)
       activerecord (>= 3.1.0)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1284.0)
+    aws-partitions (1.1285.0)
     aws-sdk-core (3.254.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -225,7 +225,7 @@ GEM
       base64 (>= 0.2)
       logger (~> 1.6)
       simpleidn (~> 0.2.1)
-    domain_name (0.6.20260902)
+    domain_name (0.6.20260907)
     drb (2.2.3)
     ed25519 (1.4.0)
     elftools (2.2.0)
@@ -292,11 +292,7 @@ GEM
     json-schema (6.2.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
-    little-plugger (1.1.4)
     logger (1.7.0)
-    logging (2.4.0)
-      little-plugger (~> 1.1)
-      multi_json (~> 1.14)
     loofah (2.25.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -358,7 +354,6 @@ GEM
     mqtt (0.7.0)
       logger
     msgpack (1.6.1)
-    multi_json (1.21.2)
     mustermann (3.1.1)
     mutex_m (0.3.0)
     nessus_rest (0.1.6)
@@ -586,13 +581,14 @@ GEM
     websocket-extensions (0.1.5)
     win32api (0.1.0)
     windows_error (0.1.6)
-    winrm (2.3.9)
+    winrm (2.4.0)
+      base64 (~> 0.2)
       builder (>= 2.1.2)
       erubi (~> 1.8)
       gssapi (~> 1.2)
       gyoku (~> 1.0)
       httpclient (~> 2.2, >= 2.2.0.2)
-      logging (>= 1.6.1, < 3.0)
+      logger (~> 1.6)
       nori (~> 2.0, >= 2.7.1)
       rexml (~> 3.0)
       rubyntlm (~> 0.6.0, >= 0.6.3)
