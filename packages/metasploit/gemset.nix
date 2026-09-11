@@ -124,10 +124,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1p2qvraa79fl6gq7g69r73bsfpxk231c0c3wp8qhlhys2gd34r02";
+      sha256 = "1194rqzfk1qd0vdi1jvv6gj16bpkvnb2lv79lbcjkmfd3rsdqfyv";
       type = "gem";
     };
-    version = "1.1284.0";
+    version = "1.1285.0";
   };
   aws-sdk-core = {
     groups = [ "default" ];
@@ -394,10 +394,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0hm08nyab376ix98d2mb6ka47q9qzzg4ylzn0bn8bp3p1a77zb2g";
+      sha256 = "00ybfbc12fzpx03nrh9k6nhzlcr8l3vc6cviq4gscr245kwaf5sm";
       type = "gem";
     };
-    version = "0.6.20260902";
+    version = "0.6.20260907";
   };
   drb = {
     groups = [ "default" ];
@@ -749,16 +749,6 @@
     };
     version = "6.2.0";
   };
-  little-plugger = {
-    groups = [ "default" ];
-    platforms = [ ];
-    source = {
-      remotes = [ "https://rubygems.org" ];
-      sha256 = "1frilv82dyxnlg8k1jhrvyd73l6k17mxc5vwxx080r4x1p04gwym";
-      type = "gem";
-    };
-    version = "1.1.4";
-  };
   logger = {
     groups = [ "default" ];
     platforms = [ ];
@@ -768,16 +758,6 @@
       type = "gem";
     };
     version = "1.7.0";
-  };
-  logging = {
-    groups = [ "default" ];
-    platforms = [ ];
-    source = {
-      remotes = [ "https://rubygems.org" ];
-      sha256 = "1jqcq2yxh973f3aw63nd3wxhqyhkncz3pf8v2gs3df0iqair725s";
-      type = "gem";
-    };
-    version = "2.4.0";
   };
   loofah = {
     groups = [ "default" ];
@@ -844,12 +824,12 @@
     platforms = [ ];
     source = {
       fetchSubmodules = false;
-      rev = "852d34c265298ab4fe8136d3b73e7639d61cd69e";
-      sha256 = "17v4vc38ah60b8kbpsmn0gv6qn4i91schc1bgldgs8hr3hmd53di";
+      rev = "a420e80358865eb463e39b713f52f2ee46957b60";
+      sha256 = "17q68vb080238wig93qxvw7a67rrivfw8gccvswyr14bk047kbs3";
       type = "git";
       url = "https://github.com/rapid7/metasploit-framework";
     };
-    version = "6.5.3";
+    version = "6.5.4";
   };
   metasploit-model = {
     groups = [ "default" ];
@@ -950,16 +930,6 @@
       type = "gem";
     };
     version = "1.6.1";
-  };
-  multi_json = {
-    groups = [ "default" ];
-    platforms = [ ];
-    source = {
-      remotes = [ "https://rubygems.org" ];
-      sha256 = "13pabgwf4qd5qn4sl7ci15g5ql038n5z0psip9xabnsbypm32m94";
-      type = "gem";
-    };
-    version = "1.21.2";
   };
   mustermann = {
     groups = [ "default" ];
@@ -2020,10 +1990,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "01jxpshw5kx5ha21ymaaj14vibv5bvm0dd80ccc6xl3jaxy7cszg";
+      sha256 = "05m918b0hz26wd6d8v6bgp0r2g28hb02f2zz52y6rmy4ymc0f8cy";
       type = "gem";
     };
-    version = "2.3.9";
+    version = "2.4.0";
   };
   xdr = {
     groups = [ "default" ];
