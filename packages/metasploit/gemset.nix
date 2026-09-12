@@ -124,10 +124,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1194rqzfk1qd0vdi1jvv6gj16bpkvnb2lv79lbcjkmfd3rsdqfyv";
+      sha256 = "0l49y6cafq6whskhq8jrzsd8k2wvgla34sjnnilzzk5ydkxp4mlm";
       type = "gem";
     };
-    version = "1.1285.0";
+    version = "1.1286.0";
   };
   aws-sdk-core = {
     groups = [ "default" ];
