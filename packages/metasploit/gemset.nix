@@ -1890,10 +1890,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1ygpikd3hdqsi16gqh33r5al1b9xdwrv2wl3rw210g7iar9vr3s7";
+      sha256 = "0171xi2ymczd7cyjf1sac5vh42rgl9q3llbqifmkhjgi10kg1x92";
       type = "gem";
     };
-    version = "1.2026.3";
+    version = "1.2026.4";
   };
   unix-crypt = {
     groups = [ "default" ];
