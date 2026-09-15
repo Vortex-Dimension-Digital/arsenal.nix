@@ -124,10 +124,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0l49y6cafq6whskhq8jrzsd8k2wvgla34sjnnilzzk5ydkxp4mlm";
+      sha256 = "1jl9v6vrqgqvic7928z92sq8nwr41zpvpdaxdib56ib524qcgx3n";
       type = "gem";
     };
-    version = "1.1286.0";
+    version = "1.1287.0";
   };
   aws-sdk-core = {
     groups = [ "default" ];
@@ -684,10 +684,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "026v93kja19bfslnwi9xfq2dj4r89kkwdprim4whjg6h3n4lz9zg";
+      sha256 = "1p8000b68iw14byanj6d8w9kfj3vgj7bxda8aj5bgbxhc6a08mgm";
       type = "gem";
     };
-    version = "0.9.2";
+    version = "0.9.3";
   };
   ipaddr = {
     groups = [ "default" ];
@@ -1700,10 +1700,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0ixldbb7d8fm8fpkxw6hjz0xirdfy2aa12w7n00lqvsgbj5mvaqx";
+      sha256 = "1md07jjlpw2ifywa509iffl7lhj03yj1vr6k410dnh5fzigs8jh5";
       type = "gem";
     };
-    version = "0.6.6";
+    version = "0.6.8";
   };
   rubyzip = {
     groups = [ "default" ];
@@ -1990,10 +1990,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "05m918b0hz26wd6d8v6bgp0r2g28hb02f2zz52y6rmy4ymc0f8cy";
+      sha256 = "0whmmxvjancs90npw4rgca99i5wvpprk7nzg350q7wqqxih7m3wz";
       type = "gem";
     };
-    version = "2.4.0";
+    version = "2.4.1";
   };
   xdr = {
     groups = [ "default" ];
