@@ -300,12 +300,12 @@ GEM
     mcp (0.13.0)
       json-schema (>= 4.1)
     metasm (1.0.6)
-    metasploit-concern (5.0.6)
-      activemodel (>= 7.0, < 8.1)
-      activesupport (>= 7.0, < 8.1)
+    metasploit-concern (5.0.7)
+      activemodel (>= 7.0, < 9.0)
+      activesupport (>= 7.0, < 9.0)
       drb
       mutex_m
-      railties (>= 7.0, < 8.1)
+      railties (>= 7.0, < 9.0)
       zeitwerk
     metasploit-credential (6.0.26)
       bigdecimal
@@ -321,17 +321,17 @@ GEM
       rex-socket
       rubyntlm
       rubyzip (>= 3.1.1, < 4.0)
-    metasploit-model (5.0.5)
-      activemodel (>= 7.0, < 8.1)
-      activesupport (>= 7.0, < 8.1)
+    metasploit-model (5.0.6)
+      activemodel (>= 7.0, < 9.0)
+      activesupport (>= 7.0, < 9.0)
       bigdecimal
       drb
       mutex_m
-      railties (>= 7.0, < 8.1)
+      railties (>= 7.0, < 9.0)
     metasploit-payloads (2.0.247)
-    metasploit_data_models (6.0.18)
-      activerecord (>= 7.0, < 8.1)
-      activesupport (>= 7.0, < 8.1)
+    metasploit_data_models (6.0.19)
+      activerecord (>= 7.0, < 9.0)
+      activesupport (>= 7.0, < 9.0)
       arel-helpers
       bigdecimal
       drb
@@ -339,7 +339,7 @@ GEM
       metasploit-model (>= 5.0.4)
       mutex_m
       pg
-      railties (>= 7.0, < 8.1)
+      railties (>= 7.0, < 9.0)
       recog
       webrick
     metasploit_payloads-mettle (1.0.48)
@@ -534,7 +534,7 @@ GEM
       windows_error (>= 0.1.4)
     rubyntlm (0.6.8)
       base64
-    rubyzip (3.6.0)
+    rubyzip (3.7.0)
     sawyer (0.9.3)
       addressable (>= 2.3.5)
       faraday (>= 0.17.3, < 3)

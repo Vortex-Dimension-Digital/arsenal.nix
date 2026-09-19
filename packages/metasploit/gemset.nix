@@ -804,10 +804,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "11frhqg5vh9dqk3q3lv5grdd3r8yhxz2qpq87wrr3cl31569bg1p";
+      sha256 = "04x0pj4ks26ix65h4pgb49k4h4ql13p9n8y7nypd2cn20cxv89zg";
       type = "gem";
     };
-    version = "5.0.6";
+    version = "5.0.7";
   };
   metasploit-credential = {
     groups = [ "default" ];
@@ -836,10 +836,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0b6d18pd56ghcvkkzxdda9g0m3ydmppv8fjjpppzplnx18ccs1sj";
+      sha256 = "1wpmi8b9w9yj8yvysq8p5b7ymb2jbxlzskba0l3g4vgj9xzyq063";
       type = "gem";
     };
-    version = "5.0.5";
+    version = "5.0.6";
   };
   metasploit-payloads = {
     groups = [ "default" ];
@@ -856,10 +856,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "13f5kn8q6p7wvxyi1pxdlf9v0nmfh2fc93n4fwms6g83xc30sdmh";
+      sha256 = "00nvk6y0n4x8cy78r9qd51h8y6rzfy6nhfvjzl9x70b6d4n1rq71";
       type = "gem";
     };
-    version = "6.0.18";
+    version = "6.0.19";
   };
   metasploit_payloads-mettle = {
     groups = [ "default" ];
@@ -1710,10 +1710,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "15dnb2admqpyw6ipxbaqj4cnfwldwkm11gwrzlf2sa329pa99296";
+      sha256 = "08g1sfv1s8vs9yaz27vjpmgihcycx9nm3wq6j29plabmvaa95hb5";
       type = "gem";
     };
-    version = "3.6.0";
+    version = "3.7.0";
   };
   sawyer = {
     groups = [ "default" ];
