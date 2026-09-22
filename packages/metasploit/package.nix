@@ -18,13 +18,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "metasploit-framework";
-  version = "6.5.4";
+  version = "6.5.5";
 
   src = fetchFromGitHub {
     owner = "rapid7";
     repo = "metasploit-framework";
     tag = finalAttrs.version;
-    hash = "sha256-Q695CJiLhOy53ow9xN2OOR+jDt8dj/QiR0MABNZGBp8=";
+    hash = "sha256-7Qyb0wd2YFOdcQHnmv/EfB3EdWCoOjAuKh+q85y3Y/o=";
   };
 
   nativeBuildInputs = [
