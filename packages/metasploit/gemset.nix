@@ -1400,10 +1400,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0sf4909q2mr9z0rpygv94z12b0yamg07gz8cba2mi5k3m448rgq3";
+      sha256 = "02pn63i2r5z44hcfhxbaag9rvqsyznsliivnn7f3dzaw1a43gz5y";
       type = "gem";
     };
-    version = "8.0.0";
+    version = "8.1.0";
   };
   recog = {
     groups = [ "default" ];
@@ -1690,10 +1690,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0rp8zvi7skm9i5fl8p7rr0fnriprfx28g84l08ii6pn9qgf3zgp8";
+      sha256 = "0mkq8wbqdsb2wd2as41dmvwv7nicjzz7q7rc1cqdr8m1rm3mslrl";
       type = "gem";
     };
-    version = "3.3.22";
+    version = "3.3.23";
   };
   rubyntlm = {
     groups = [ "default" ];
