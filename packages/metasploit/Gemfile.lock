@@ -394,7 +394,7 @@ GEM
     ostruct (0.6.3)
     packetfu (2.0.0)
       pcaprub (~> 0.13.1)
-    parallel (2.2.0)
+    parallel (2.3.0)
     patch_finder (1.0.2)
     pcaprub (0.13.3)
     pdf-reader (2.16.0)
@@ -402,7 +402,7 @@ GEM
       afm (>= 0.2.1, < 2)
       hashery (~> 2.0)
       ttfunk
-    pg (1.6.3)
+    pg (1.7.0)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
