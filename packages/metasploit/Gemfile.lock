@@ -289,7 +289,7 @@ GEM
     jsobfu (0.4.2)
       rkelly-remix
     json (3.0.2)
-    json-schema (6.2.0)
+    json-schema (6.2.1)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
     logger (1.7.0)
@@ -371,7 +371,7 @@ GEM
       net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.2)
       net-protocol
-    net-ssh (7.3.3)
+    net-ssh (7.3.4)
     netrc (0.11.0)
     network_interface (0.0.4)
     nexpose (7.3.0)
