@@ -371,7 +371,7 @@ GEM
       net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.2)
       net-protocol
-    net-ssh (7.3.4)
+    net-ssh (7.3.5)
     netrc (0.11.0)
     network_interface (0.0.4)
     nexpose (7.3.0)
@@ -452,7 +452,7 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
-    recog (3.1.35)
+    recog (3.1.36)
       nokogiri
     redcarpet (3.6.1)
     reline (0.7.0)
