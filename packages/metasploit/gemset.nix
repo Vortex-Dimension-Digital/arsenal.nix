@@ -1026,10 +1026,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0y1bhyqxjfldgi61bknfwxqa8m9b444krc1bwfj0hkj3jvadwamb";
+      sha256 = "0jyf11l0p7nqkd5hwwz46gkshwfqh049gbhj3qigbfajwzfdwr1k";
       type = "gem";
     };
-    version = "7.3.5";
+    version = "7.3.6";
   };
   netrc = {
     groups = [ "default" ];
