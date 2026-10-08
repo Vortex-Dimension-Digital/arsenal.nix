@@ -53,7 +53,7 @@ packages.
 | [`seclists`](packages/seclists/package.nix) | Collection of multiple types of lists used during security assessments, collected in one place | 2026.1 |
 | [`smbmap`](packages/smbmap/package.nix) | SMB enumeration tool | 1.10.8 |
 | [`ssh-audit`](packages/ssh-audit/package.nix) | Tool for ssh server auditing | 3.9.0 |
-| [`subfinder`](packages/subfinder/package.nix) | Subdomain discovery tool | 2.16.0 |
+| [`subfinder`](packages/subfinder/package.nix) | Subdomain discovery tool | 2.17.0 |
 | [`testssl`](packages/testssl/package.nix) | CLI tool to check a server's TLS/SSL capabilities | 3.2.4 |
 | [`thc-hydra`](packages/thc-hydra/package.nix) | Very fast network logon cracker which support many different services | 9.7 |
 
