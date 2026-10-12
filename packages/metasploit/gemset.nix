@@ -996,10 +996,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0wjkrvcwnxa6ggq0nfz004f1blm1c67fv7c6614sraak0wshn25j";
+      sha256 = "0ximwa5p19s0v9n96b9aclp18k07hwnmv9bdnzfav0g1f4r9xcyb";
       type = "gem";
     };
-    version = "0.20.0";
+    version = "0.21.0";
   };
   net-protocol = {
     groups = [ "default" ];
@@ -1420,10 +1420,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0bb1l8aj2m6dyr3ifa0rvya9rza42b5bhga4y2d40iivldsa1ppk";
+      sha256 = "0rhar9j0264aqx4b2s3fwac7hrw3d4k0vs6vgz92hqi77bskmq88";
       type = "gem";
     };
-    version = "3.1.36";
+    version = "3.1.37";
   };
   redcarpet = {
     groups = [ "default" ];
