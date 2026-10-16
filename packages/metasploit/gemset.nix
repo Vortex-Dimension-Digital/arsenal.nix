@@ -704,10 +704,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1dyy0g6cycszq2xsrcx3kxq3fa3zyxx9kxxcs8dgipj55rxqm18g";
+      sha256 = "0wlvsh8ah8vb85zhz9fyp8pz4f6jd3x0n086wvf4m93mw156chd8";
       type = "gem";
     };
-    version = "1.2.9";
+    version = "1.3.0";
   };
   irb = {
     groups = [ "default" ];
@@ -794,10 +794,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1dzb1j5iismzshkd20hchf24rxnmm9bpq93gg9vv0j5rfw8jdwxx";
+      sha256 = "1hqfv4xd3rs4m3xwc7vrw7f5qishban3scjbjaqar9kx9sg48z99";
       type = "gem";
     };
-    version = "1.7.0";
+    version = "1.8.0";
   };
   metasm = {
     groups = [ "default" ];
