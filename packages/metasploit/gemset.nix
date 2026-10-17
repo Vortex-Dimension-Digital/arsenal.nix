@@ -494,20 +494,20 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0vmb5wpiz7mf2r6vjvhvfp38rrfvqjzmv7m3max0s6v28j641d4v";
+      sha256 = "1zsz6ghll6hqsrnbfxagvln58nw4zvyfjygnnjhi7nby33qfzq1v";
       type = "gem";
     };
-    version = "2.14.4";
+    version = "2.15.0";
   };
   faraday-net_http = {
     groups = [ "default" ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "125m3qri52vwh5v9dhq0dkqxf8629cxrf99yyc01pva72wasyy0f";
+      sha256 = "0difl8kbbhz1pirq8prpv42p0rgqfrrz8gfc93h4wx9q9v1r8w1f";
       type = "gem";
     };
-    version = "3.4.4";
+    version = "3.5.0";
   };
   faraday-retry = {
     groups = [ "default" ];
@@ -834,12 +834,12 @@
     platforms = [ ];
     source = {
       fetchSubmodules = false;
-      rev = "c9f124a1cc4f3c4c62c43322733b7ff8736767d1";
-      sha256 = "0v2vqqa0d6lfykk96f13v2zia5a3a2ygf2z7p1vmhszwwbpdldfk";
+      rev = "5030a767d9714d0e8a2a4cbb2fd79db337e334ae";
+      sha256 = "0xh0xsqp1107fdk12g2mshxcji6f9gix40ihncwvhja0rsz964l9";
       type = "git";
       url = "https://github.com/rapid7/metasploit-framework";
     };
-    version = "6.5.6";
+    version = "6.5.7";
   };
   metasploit-model = {
     groups = [ "default" ];
@@ -896,10 +896,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "0bxfwiafwy50qlq5pz9kc61mcx21jg8gj1afb29z8mzqzprp6yb5";
+      sha256 = "15hwjr7ava56i23lndsqafj31qfbl8p4jrlph9c4xra758pia3rp";
       type = "gem";
     };
-    version = "3.2026.1006";
+    version = "3.2026.1013";
   };
   mini_portile2 = {
     groups = [ "default" ];
