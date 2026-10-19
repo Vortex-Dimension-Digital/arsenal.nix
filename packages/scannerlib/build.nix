@@ -204,8 +204,30 @@ in
     // {
       doCheck = false;
 
+      # One output per command, so a consumer of one command does not carry
+      # the other two. `out` links all three, as the workspace always did.
+      outputs = [
+        "out"
+        "openvasd"
+        "scannerctl"
+        "feedFilter"
+      ];
+
+      # stdenv strips only debug info by default; drop the symbol tables too.
+      stripAllList = [ "bin" ];
+
+      # After crane's postInstall hook removes vendored-source references,
+      # which it does in $out only, and before fixup strips every output.
+      preFixup = ''
+        mkdir -p "$openvasd/bin" "$scannerctl/bin" "$feedFilter/bin"
+        mv "$out/bin/openvasd" "$openvasd/bin/"
+        mv "$out/bin/scannerctl" "$scannerctl/bin/"
+        mv "$out/bin/feed-filter" "$feedFilter/bin/"
+        ln -s "$openvasd/bin/openvasd" "$scannerctl/bin/scannerctl" "$feedFilter/bin/feed-filter" "$out/bin/"
+      '';
+
       postFixup = ''
-        for program in "$out/bin/"*; do
+        for program in "$openvasd/bin/openvasd" "$scannerctl/bin/scannerctl" "$feedFilter/bin/feed-filter"; do
           wrapProgram "$program" \
             --set-default SSL_CERT_FILE ${cacert}/etc/ssl/certs/ca-bundle.crt
         done
