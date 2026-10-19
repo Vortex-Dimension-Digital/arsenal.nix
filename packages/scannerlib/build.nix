@@ -163,6 +163,10 @@ let
 
   mkCommon = {
     inherit cargoArtifacts;
+    # Since 23.51.1 the feed update keeps only each plugin's base name, so
+    # plugins in subdirectories (most of the community feed) fail to load.
+    # Not in commonArgs: buildDepsOnly's dummy source has no file to patch.
+    patches = [ ./fix-feed-subdirectories.patch ];
     BIN_VERSION = version;
     nativeBuildInputs = commonArgs.nativeBuildInputs ++ [ makeWrapper ];
     inherit disallowedReferences;
