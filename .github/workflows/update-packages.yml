@@ -64,6 +64,10 @@ jobs:
           use-gha-cache: true
 
       - name: Update ${{ matrix.package }}
+        env:
+          # nix-update and package updaters query the GitHub API, whose
+          # unauthenticated rate limit is shared across runners.
+          GITHUB_TOKEN: ${{ github.token }}
         run: nix run .#update -- "$PACKAGE"
 
       - name: Regenerate README package table

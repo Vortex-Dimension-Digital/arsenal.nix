@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import re
 import subprocess
 import time
@@ -8,12 +9,16 @@ import urllib.error
 import urllib.request
 
 def fetch_latest_version():
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "arsenal.nix",
+    }
+    # Unauthenticated requests share a low per-IP rate limit on CI runners.
+    if token := os.environ.get("GITHUB_TOKEN"):
+        headers["Authorization"] = f"Bearer {token}"
     request = urllib.request.Request(
         "https://api.github.com/repos/nmap/nmap/tags?per_page=100",
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "arsenal.nix",
-        },
+        headers=headers,
     )
 
     for attempt in range(3):
