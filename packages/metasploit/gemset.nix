@@ -1780,10 +1780,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "06k6bhcpbixlsf5dwm0ziij8wryxmxbhxf77k50cbca94anc9iiz";
+      sha256 = "1x1zn43vs6g07ggpiv7h0qb89fyvs8kbsbadyhn8hrmpyn8jrrbs";
       type = "gem";
     };
-    version = "2.10.0";
+    version = "2.10.1";
   };
   sshkey = {
     groups = [ "default" ];
