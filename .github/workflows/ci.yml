@@ -42,8 +42,6 @@ jobs:
           use-gha-cache: true
       - name: Verify generated README
         run: ./scripts/generate-package-docs.py --check
-      - name: Check flake outputs
-        run: nix flake check --no-build
       - name: Plan uncached builds
         id: plan
         run: |
@@ -51,6 +49,10 @@ jobs:
             --flake ".#checks.$SYSTEM" --check-cache-status --workers 2 \
             | ./scripts/ci-build-plan.py > groups.json
           echo "groups=$(cat groups.json)" >> "$GITHUB_OUTPUT"
+      # Runs after planning, which realises the sources that evaluation imports
+      # (import-from-derivation); --no-build cannot fetch them itself.
+      - name: Check flake outputs
+        run: nix flake check --no-build
 
   build:
     name: Build ${{ matrix.group.name }}
