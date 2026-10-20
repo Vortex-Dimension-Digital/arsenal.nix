@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: Package to build; leave empty to run the full flake check
+        description: Updated package whose automated pull request branch is checked; leave empty for flake-lock updates
       pull-request-number:
         description: Automated pull request to merge after checks pass
 
@@ -16,28 +16,86 @@ permissions:
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # Let main finish so every build result reaches the binary cache.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  SYSTEM: x86_64-linux
 
 jobs:
-  check:
+  eval:
+    name: Evaluate
     runs-on: ubuntu-latest
+    outputs:
+      groups: ${{ steps.plan.outputs.groups }}
     steps:
       - uses: actions/checkout@v7
       - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
+        if: vars.CACHIX_CACHE != ''
+        with:
+          name: ${{ vars.CACHIX_CACHE }}
+          skipPush: true
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
           use-flakehub: false
           use-gha-cache: true
       - name: Verify generated README
         run: ./scripts/generate-package-docs.py --check
-      - name: Build package
-        if: inputs.package != ''
+      - name: Check flake outputs
+        run: nix flake check --no-build
+      - name: Plan uncached builds
+        id: plan
+        run: |
+          nix run --inputs-from . nixpkgs#nix-eval-jobs -- \
+            --flake ".#checks.$SYSTEM" --check-cache-status --workers 2 \
+            | ./scripts/ci-build-plan.py > groups.json
+          echo "groups=$(cat groups.json)" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build ${{ matrix.group.name }}
+    needs: eval
+    if: needs.eval.outputs.groups != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ${{ fromJSON(needs.eval.outputs.groups) }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
+        if: vars.CACHIX_CACHE != ''
+        with:
+          name: ${{ vars.CACHIX_CACHE }}
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
+        with:
+          use-flakehub: false
+          use-gha-cache: true
+      - name: Build checks
         env:
-          PACKAGE: ${{ inputs.package }}
-        run: nix build ".#$PACKAGE" --print-build-logs
-      - name: Check flake
-        if: inputs.package == ''
-        run: nix flake check --keep-going --print-build-logs
+          ATTRS: ${{ matrix.group.attrs }}
+        run: |
+          installables=()
+          for attr in $ATTRS; do
+            installables+=(".#checks.$SYSTEM.$attr")
+          done
+          nix build --no-link --keep-going --print-build-logs "${installables[@]}"
+
+  check:
+    needs: [eval, build]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require evaluation and builds to succeed
+        env:
+          EVAL_RESULT: ${{ needs.eval.result }}
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: |
+          echo "eval: $EVAL_RESULT, build: $BUILD_RESULT"
+          [[ "$EVAL_RESULT" == success ]]
+          [[ "$BUILD_RESULT" == success || "$BUILD_RESULT" == skipped ]]
 
   auto-merge:
     name: Auto-merge update

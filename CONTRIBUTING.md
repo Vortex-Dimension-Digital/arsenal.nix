@@ -115,12 +115,14 @@ maintained by hand.
 
 ## Automation
 
-CI verifies generated documentation and runs the flake checks on pushes and
-pull requests. Scheduled workflows update package sources and flake inputs,
-verify the result, and open pull requests. They never merge pull requests
-automatically. Workflows share Nix build results through GitHub Actions cache,
-so unchanged derivations are reused while the complete dependency-aware flake
-check still runs.
+CI verifies generated documentation and flake outputs, then builds the flake
+checks on pushes and pull requests. Scheduled workflows update package sources
+and flake inputs, verify the result, and open pull requests. They never merge
+pull requests automatically. Workflows share Nix build results through Cachix
+and GitHub Actions cache. CI evaluates every check and builds only those whose
+outputs are not already cached, so the check stays dependency-aware while
+unchanged packages cost nothing. Uncached checks that share derivations build
+together, and independent groups build in parallel.
 
 ## Validation
 

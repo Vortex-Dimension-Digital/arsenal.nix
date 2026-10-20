@@ -100,11 +100,14 @@ by hand. Preserve the authorization warning near the beginning of `README.md`.
 
 ## Automation
 
-- CI checks generated documentation and runs `nix flake check` for pushes and
-  pull requests.
-- CI and updater workflows share unchanged Nix store paths through GitHub
-  Actions cache. Keep the full flake check dependency-aware instead of adding
-  brittle path-based package filters.
+- CI checks generated documentation and flake outputs, then builds every flake
+  check whose outputs are not already in a binary cache for pushes and pull
+  requests. `scripts/ci-build-plan.py` groups uncached checks that share
+  derivations, and each group builds in its own parallel job.
+- CI and updater workflows share Nix store paths through Cachix, configured by
+  the `CACHIX_CACHE` repository variable and `CACHIX_AUTH_TOKEN` secret, and
+  through GitHub Actions cache. Keep the build plan dependency-aware instead of
+  adding brittle path-based package filters.
 - Scheduled workflows propose package and flake-input updates with pull
   requests.
 - Automation must never merge pull requests without an explicit repository
