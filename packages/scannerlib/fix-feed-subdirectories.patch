@@ -1,11 +1,11 @@
 --- a/src/feed/update/mod.rs
 +++ b/src/feed/update/mod.rs
-@@ -228,7 +228,9 @@
+@@ -228,7 +228,9 @@ where
                  }
  
                  let filename = k.get_filename();
 -                let filename = filename.file_name().unwrap();
-+                // sha256sums names plugins relative to the feed root, mostly
++                // sha256sums lists plugins relative to the feed root, mostly
 +                // in subdirectories and sometimes with a leading "./".
 +                let filename = filename.strip_prefix("./").unwrap_or(&filename);
                  // TODO: Decide what to do with FileName, either turn its `.0`
