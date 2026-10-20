@@ -26,13 +26,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gvm-libs";
-  version = "23.13.0";
+  version = "23.14.0";
 
   src = fetchFromGitHub {
     owner = "greenbone";
     repo = "gvm-libs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-huGRk1L1C+H02YZ+G4cGyR+ZcfxjdjmTEGBDZHmdp1Q=";
+    hash = "sha256-jIE7hMtOcoj1nOvFaMdOggmV6jEPlFvRRzumBmyz1TM=";
   };
 
   # Dependency warnings should not make downstream OpenVAS updates fail.
