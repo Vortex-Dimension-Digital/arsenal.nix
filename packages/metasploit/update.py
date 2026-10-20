@@ -2,7 +2,7 @@
 """Update metasploit.
 
 nix-update cannot regenerate the Ruby gemset, so this updater:
-  1. finds the latest upstream tag,
+  1. finds the latest upstream tag and stops if it is already packaged,
   2. points the Gemfile at it,
   3. relocks with bundler and regenerates gemset.nix with bundix,
   4. hands the version to nix-update, which rewrites the source hash.
@@ -65,6 +65,13 @@ def latest_tag() -> str:
     return versions[0]
 
 
+def current_version() -> str:
+    match = re.search(r'^\s*version = "([^"]+)";', (HERE / "package.nix").read_text(), re.M)
+    if not match:
+        raise SystemExit("could not find the metasploit version in package.nix")
+    return match.group(1)
+
+
 def regenerate_gemset(version: str) -> None:
     gemfile = HERE / "Gemfile"
     gemfile.write_text(
@@ -93,10 +100,16 @@ def regenerate_gemset(version: str) -> None:
 
 
 def main() -> None:
+    version = latest_tag()
+    # Relocking without a new tag only churns transitive gem versions, which
+    # costs a pull request and a full rebuild for no metasploit change.
+    if version == current_version():
+        print(f"metasploit is already at {version}")
+        return
+
     if BOOTSTRAP_MARKER not in os.environ and shutil.which("bundix") is None:
         reexec_in_nix_shell()
 
-    version = latest_tag()
     regenerate_gemset(version)
     subprocess.run(
         ["nix-update", "--flake", "metasploit", "--version", version],

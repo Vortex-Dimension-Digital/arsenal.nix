@@ -124,6 +124,26 @@ To expose packages directly and replace same-named Nixpkgs packages:
 }
 ```
 
+## Binary cache
+
+CI publishes `x86_64-linux` builds to Cachix. Add the cache to download them
+instead of building locally:
+
+```nix
+{
+  nix.settings = {
+    extra-substituters = [ "https://arsenal.cachix.org" ];
+    extra-trusted-public-keys = [
+      "arsenal.cachix.org-1:kxIsEaRsKlWDYaCThTTllVtCGwut18HMl7jn5oy0sYU="
+    ];
+  };
+}
+```
+
+Cached builds match `arsenal.packages` evaluated with this flake's pinned
+Nixpkgs. Overlays or `inputs.nixpkgs.follows` build against your Nixpkgs, so
+those packages usually build locally.
+
 ## Development
 
 Package definitions live in `packages/<name>/package.nix` and are discovered
