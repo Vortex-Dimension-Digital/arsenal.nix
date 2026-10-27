@@ -6,7 +6,7 @@
 
 stdenvNoCC.mkDerivation {
   pname = "seclists";
-  version = "2026.1";
+  version = "2026.2";
 
   src = fetchFromGitHub {
     owner = "danielmiessler";
