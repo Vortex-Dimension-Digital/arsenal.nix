@@ -50,7 +50,7 @@ packages.
 | [`openvasd`](packages/openvasd/package.nix) | Rust scanner service for OpenVAS | 23.52.3 |
 | [`scannerctl`](packages/scannerctl/package.nix) | CLI frontend for OpenVAS scanner utilities | 23.52.3 |
 | [`scannerlib`](packages/scannerlib/package.nix) | OpenVAS Rust workspace | 23.52.3 |
-| [`seclists`](packages/seclists/package.nix) | Collection of multiple types of lists used during security assessments, collected in one place | 2026.1 |
+| [`seclists`](packages/seclists/package.nix) | Collection of multiple types of lists used during security assessments, collected in one place | 2026.2 |
 | [`smbmap`](packages/smbmap/package.nix) | SMB enumeration tool | 1.10.8 |
 | [`ssh-audit`](packages/ssh-audit/package.nix) | Tool for ssh server auditing | 3.9.0 |
 | [`subfinder`](packages/subfinder/package.nix) | Subdomain discovery tool | 2.17.0 |
