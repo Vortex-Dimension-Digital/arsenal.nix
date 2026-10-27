@@ -10,7 +10,8 @@ preserve the repository's authorization warning in user-facing documentation.
 
 - `flake.nix` composes the repository with flake-parts.
 - `nix/packages.nix` discovers package directories and creates the shared
-  package scope, package outputs, apps, checks, and overlays.
+  package scope, package outputs, apps, checks, and overlays. Both overlays
+  expose the scope as `pkgs.arsenal` for `overrideScope`.
 - `nix/development.nix` defines the development shell, formatter, and update
   app.
 - Packages live in `packages/<name>/package.nix`.
@@ -43,6 +44,9 @@ preserve the repository's authorization warning in user-facing documentation.
 - Declare another in-repository package as a function argument when it is a
   dependency. The shared scope then resolves it to this repository's package
   rather than the same-named package from Nixpkgs.
+- Build Rust packages with the scope's `craneLib` argument, never a crane
+  library of their own, so consumers can change every Rust toolchain in one
+  `overrideScope`.
 - Keep shared build functions for one tool family in that tool's directory;
   generic discovery must not name or configure individual tools.
 - When one derivation installs several entry points, expose each useful command

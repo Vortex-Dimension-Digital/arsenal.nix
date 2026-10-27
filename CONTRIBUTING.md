@@ -34,7 +34,8 @@ packages/
 The flake and update workflow discover directories containing `package.nix`
 automatically. Package expressions are called from a shared scope, so declaring
 another repository package as an argument uses that package instead of the
-same-named package from Nixpkgs.
+same-named package from Nixpkgs. Rust packages take `craneLib` from the same
+scope, so consumers can change their toolchain in one place.
 
 Keep shared implementation for one tool family beside that tool rather than in
 the generic package scope. Individual package expressions should retain their

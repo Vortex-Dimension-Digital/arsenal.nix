@@ -4,24 +4,31 @@ let
     lib.filterAttrs (_name: type: type == "directory") (builtins.readDir ../packages)
   );
 
-  mkPackageSet =
+  # Both overlays expose the scope as `pkgs.arsenal`, so consumers can change a
+  # package or `craneLib` with `overrideScope`, and the packages depending on
+  # it follow.
+  mkScope =
     pkgs:
-    let
-      scope = lib.makeScope pkgs.newScope (
-        self:
-        {
-          craneLib = inputs.crane.mkLib pkgs;
-        }
-        // lib.genAttrs packageNames (name: self.callPackage (../packages + "/${name}/package.nix") { })
-      );
-    in
-    lib.genAttrs packageNames (name: scope.${name});
+    lib.makeScope pkgs.newScope (
+      self:
+      {
+        craneLib = inputs.crane.mkLib pkgs;
+      }
+      // lib.genAttrs packageNames (name: self.callPackage (../packages + "/${name}/package.nix") { })
+    );
 
   namespacedOverlay = final: _previous: {
-    arsenal = mkPackageSet final;
+    arsenal = mkScope final;
   };
 
-  directOverlay = final: _previous: mkPackageSet final;
+  # Reads the packages back from `final.arsenal` so they follow an overridden
+  # scope.
+  directOverlay =
+    final: _previous:
+    {
+      arsenal = mkScope final;
+    }
+    // lib.genAttrs packageNames (name: final.arsenal.${name});
 in
 {
   flake.overlays = {
@@ -33,7 +40,8 @@ in
   perSystem =
     { pkgs, ... }:
     let
-      arsenalPackages = (pkgs.extend namespacedOverlay).arsenal;
+      scope = (pkgs.extend namespacedOverlay).arsenal;
+      arsenalPackages = lib.genAttrs packageNames (name: scope.${name});
     in
     {
       packages = arsenalPackages;

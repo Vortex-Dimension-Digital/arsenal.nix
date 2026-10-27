@@ -124,6 +124,34 @@ To expose packages directly and replace same-named Nixpkgs packages:
 }
 ```
 
+### Overriding packages
+
+Both overlays expose the package scope as `pkgs.arsenal`. Change a package, or
+`craneLib`, the [crane](https://github.com/ipetkov/crane) library the Rust
+packages build with, through `overrideScope`; the packages that depend on it
+follow, and so do the top-level packages of `overlays.direct`. For example, to
+build the OpenVAS Rust tools with an extra patch and the stable toolchain from
+[fenix](https://github.com/nix-community/fenix)'s overlay:
+
+```nix
+final: prev: {
+  arsenal = prev.arsenal.overrideScope (
+    self: super: {
+      craneLib = super.craneLib.overrideToolchain (
+        p:
+        p.fenix.stable.withComponents [
+          "cargo"
+          "rustc"
+        ]
+      );
+      scannerlib = super.scannerlib.overrideAttrs (old: {
+        patches = old.patches or [ ] ++ [ ./fix.patch ];
+      });
+    }
+  );
+}
+```
+
 ## Binary cache
 
 CI publishes `x86_64-linux` builds to Cachix. Add the cache to download them
