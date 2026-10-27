@@ -1,0 +1,53 @@
+name: Pin cached packages
+
+# Cachix deletes the least recently downloaded paths once the cache is full.
+# Pinning every package output that main currently builds keeps those paths
+# out of garbage collection; older revisions lose their pin and are collected
+# first. Merges made with GITHUB_TOKEN do not trigger workflows, so this runs
+# on a schedule instead of after each merge.
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pin-cache
+  cancel-in-progress: false
+
+env:
+  SYSTEM: x86_64-linux
+
+jobs:
+  pin:
+    if: vars.CACHIX_CACHE != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v17
+        with:
+          name: ${{ vars.CACHIX_CACHE }}
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          skipPush: true
+
+      - name: Pin package outputs
+        env:
+          CACHE: ${{ vars.CACHIX_CACHE }}
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+        run: |
+          outputs=$(nix eval --json ".#packages.$SYSTEM" \
+            --apply 'builtins.mapAttrs (_name: package: package.outPath)')
+          for name in $(jq --raw-output 'keys[]' <<< "$outputs"); do
+            path=$(jq --raw-output --arg name "$name" '.[$name]' <<< "$outputs")
+            # Outputs identical to Nixpkgs come from cache.nixos.org and are
+            # never pushed here.
+            if ! nix path-info --store "https://$CACHE.cachix.org" "$path" > /dev/null 2>&1; then
+              echo "Skipping $name: $path is not in the $CACHE cache"
+              continue
+            fi
+            cachix pin "$CACHE" "$name" "$path" --keep-revisions 1
+          done

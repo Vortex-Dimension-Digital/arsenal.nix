@@ -112,6 +112,10 @@ by hand. Preserve the authorization warning near the beginning of `README.md`.
   the `CACHIX_CACHE` repository variable and `CACHIX_AUTH_TOKEN` secret, and
   through GitHub Actions cache. Keep the build plan dependency-aware instead of
   adding brittle path-based package filters.
+- Cachix garbage-collects the least recently downloaded paths when the cache
+  is full. A daily workflow pins every package output that `main` builds and
+  that lives in the cache, keeping one revision per package, so older versions
+  and build intermediates are collected first.
 - Scheduled workflows propose package and flake-input updates with pull
   requests.
 - Automation must never merge pull requests without an explicit repository
