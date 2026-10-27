@@ -14,8 +14,10 @@ nix develop
 ```
 
 It provides the formatter, `nix-update`, and the tools used by repository
-scripts. Local pre-commit hooks are not required; the commands documented below
-are the same checks enforced by CI.
+scripts, and installs Git pre-commit hooks that format Nix files and regenerate
+the README package table. When a hook changes a file, the commit stops; review
+and stage the change, then commit again. The hooks are a convenience: the
+commands documented below are the same checks enforced by CI.
 
 ## Package layout
 

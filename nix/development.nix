@@ -1,6 +1,9 @@
 { inputs, ... }:
 {
-  imports = [ inputs.treefmt-nix.flakeModule ];
+  imports = [
+    inputs.git-hooks-nix.flakeModule
+    inputs.treefmt-nix.flakeModule
+  ];
 
   perSystem =
     { config, pkgs, ... }:
@@ -29,12 +32,30 @@
         programs.nixfmt.enable = true;
       };
 
+      pre-commit = {
+        # The package-docs hook evaluates the flake, which the build sandbox
+        # cannot do, so CI runs the hooks from the development shell instead.
+        check.enable = false;
+        settings.hooks = {
+          treefmt.enable = true;
+          package-docs = {
+            enable = true;
+            name = "README package table";
+            entry = "${pkgs.python3.interpreter} scripts/generate-package-docs.py";
+            files = ''^(flake\.(nix|lock)|nix/.*|packages/.*|scripts/generate-package-docs\..*|README\.md)$'';
+            pass_filenames = false;
+          };
+        };
+      };
+
       devShells.default = pkgs.mkShellNoCC {
         packages = [
+          config.pre-commit.settings.package
           config.treefmt.build.wrapper
           pkgs.nix-update
           pkgs.python3
         ];
+        shellHook = config.pre-commit.installationScript;
       };
     };
 }

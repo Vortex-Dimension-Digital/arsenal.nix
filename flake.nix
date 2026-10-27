@@ -11,6 +11,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     systems.url = "github:nix-systems/default-linux";
 
     treefmt-nix = {

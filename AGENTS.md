@@ -12,8 +12,8 @@ preserve the repository's authorization warning in user-facing documentation.
 - `nix/packages.nix` discovers package directories and creates the shared
   package scope, package outputs, apps, checks, and overlays. Both overlays
   expose the scope as `pkgs.arsenal` for `overrideScope`.
-- `nix/development.nix` defines the development shell, formatter, and update
-  app.
+- `nix/development.nix` defines the development shell, formatter, Git hooks,
+  and update app.
 - Packages live in `packages/<name>/package.nix`.
 - A package may also contain a tool-family `build.nix`, `nix-update-args`,
   `update-owner`, patches, or a custom `update.py`.
@@ -104,7 +104,7 @@ by hand. Preserve the authorization warning near the beginning of `README.md`.
 
 ## Automation
 
-- CI checks generated documentation and flake outputs, then builds every flake
+- CI runs the Git hooks and checks flake outputs, then builds every flake
   check whose outputs are not already in a binary cache for pushes and pull
   requests. `scripts/ci-build-plan.py` groups uncached checks that share
   derivations, and each group builds in its own parallel job.
@@ -116,8 +116,12 @@ by hand. Preserve the authorization warning near the beginning of `README.md`.
   requests.
 - Automation must never merge pull requests without an explicit repository
   policy change.
-- Local pre-commit hooks are optional. CI is authoritative, so validation must
-  remain runnable through the documented commands without hooks.
+- `nix develop` installs Git pre-commit hooks from git-hooks.nix that format
+  Nix files and regenerate the README package table. The hook that regenerates
+  the table evaluates the flake, so it cannot run in the build sandbox; CI runs
+  the hooks from the development shell instead of as a flake check.
+- Local hooks are optional. CI is authoritative, so validation must remain
+  runnable through the documented commands without hooks.
 
 ## Pull Request Checklist
 

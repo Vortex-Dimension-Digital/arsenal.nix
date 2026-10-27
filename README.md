@@ -185,7 +185,8 @@ nix flake check
 ```
 
 The package table in this README is generated from evaluated flake metadata and
-must not be edited manually:
+must not be edited manually. The pre-commit hook that `nix develop` installs
+regenerates it on commit; to regenerate it by hand:
 
 ```console
 ./scripts/generate-package-docs.py
