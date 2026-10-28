@@ -38,7 +38,7 @@ packages.
 | [`gvm-libs`](packages/gvm-libs/package.nix) | Libraries module for the Greenbone Vulnerability Management Solution | 23.15.0 |
 | [`httpx`](packages/httpx/package.nix) | Fast and multi-purpose HTTP toolkit | 1.12.0 |
 | [`metasploit`](packages/metasploit/package.nix) | Metasploit Framework - a collection of exploits | 6.5.8 |
-| [`naabu`](packages/naabu/package.nix) | Fast SYN/CONNECT port scanner | 2.6.1 |
+| [`naabu`](packages/naabu/package.nix) | Fast SYN/CONNECT port scanner | 2.7.0 |
 | [`nerva`](packages/nerva/package.nix) | Fingerprinting CLI tool for various protocols | 1.83.0 |
 | [`netexec`](packages/netexec/package.nix) | Network service exploitation tool (maintained fork of CrackMapExec) | 1.5.1 |
 | [`nmap`](packages/nmap/package.nix) | Free and open source utility for network discovery and security auditing | 7.992 |
