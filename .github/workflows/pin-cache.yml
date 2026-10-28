@@ -49,5 +49,14 @@ jobs:
               echo "Skipping $name: $path is not in the $CACHE cache"
               continue
             fi
-            cachix pin "$CACHE" "$name" "$path" --keep-revisions 1
+            # `cachix pin` refuses paths missing from the local store, and
+            # realising them would download every closure. Send the request
+            # that `cachix pin --keep-revisions 1` sends instead.
+            jq --null-input --arg name "$name" --arg path "$path" \
+              '{name: $name, storePath: $path, artifacts: [], keep: {tag: "Revisions", contents: 1}}' \
+              | curl --fail-with-body --silent --show-error --retry 3 \
+                --header "Authorization: Bearer $CACHIX_AUTH_TOKEN" \
+                --header "Content-Type: application/json" \
+                --data @- "https://app.cachix.org/api/v1/cache/$CACHE/pin"
+            echo "Pinned $name: $path"
           done
