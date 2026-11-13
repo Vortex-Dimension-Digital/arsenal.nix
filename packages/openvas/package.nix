@@ -52,7 +52,11 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-7rbzJdE1Jjc2qB9mtOnjUbyEiBtZsDkJIOEUxsT+3Qk=";
   };
 
-  patches = [ ./fix-gcc-warnings.patch ];
+  # Upstream builds with -Wextra -Werror. Current GCC flags comparisons of
+  # `ip->ip_hl * 4` (at most 60) with size_t in nasl/nasl_packet_forgery.c.
+  # Patching those lines broke whenever upstream changed that file, so only
+  # this warning stays non-fatal; every other warning still fails the build.
+  env.NIX_CFLAGS_COMPILE = "-Wno-error=sign-compare";
 
   nativeBuildInputs = [
     autoPatchelfHook
