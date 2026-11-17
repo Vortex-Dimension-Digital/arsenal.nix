@@ -25,8 +25,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 
 # Toolchain used to relock and regenerate the gemset, mirrored from the upstream
-# nixpkgs updater. nix-update is included so the final step works no matter how
-# the script was launched.
+# nixpkgs updater.
 NIX_SHELL_TOOLS = [
     "bundix",
     "git",
@@ -34,7 +33,6 @@ NIX_SHELL_TOOLS = [
     "libpcap",
     "libxml2",
     "libxslt",
-    "nix-update",
     "pkg-config",
     "postgresql",
     "ruby.devEnv",
@@ -45,7 +43,13 @@ BOOTSTRAP_MARKER = "METASPLOIT_UPDATE_BOOTSTRAPPED"
 
 
 def reexec_in_nix_shell() -> None:
-    installables = [f"nixpkgs#{tool}" for tool in NIX_SHELL_TOOLS]
+    tools = NIX_SHELL_TOOLS
+    # `nix shell` puts its tools ahead of the current PATH, so only add
+    # nix-update when it is missing. The update app and development shell
+    # provide a patched nix-update that the stock one must not shadow.
+    if shutil.which("nix-update") is None:
+        tools = [*tools, "nix-update"]
+    installables = [f"nixpkgs#{tool}" for tool in tools]
     env = {**os.environ, BOOTSTRAP_MARKER: "1"}
     os.execvpe(
         "nix",
