@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/rapid7/metasploit-framework
-  revision: 2e21323d3a864f576971d65d26d39b6c49184deb
-  ref: refs/tags/6.5.10
+  revision: 5eb06b8ddb15ad98b7f52e1eb31b3c052314ffb0
+  ref: refs/tags/6.5.11
   specs:
-    metasploit-framework (6.5.10)
+    metasploit-framework (6.5.11)
       aarch64
       abbrev
       actionpack (~> 8.1.4.1)
@@ -173,8 +173,8 @@ GEM
     arel-helpers (2.17.0)
       activerecord (>= 3.1.0)
     aws-eventstream (1.4.1)
-    aws-partitions (1.1307.0)
-    aws-sdk-core (3.269.0)
+    aws-partitions (1.1308.0)
+    aws-sdk-core (3.270.0)
       aws-eventstream (~> 1, >= 1.4.1)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -183,24 +183,24 @@ GEM
       jmespath (~> 1, >= 1.6.1)
       logger
       rexml (~> 3.4, >= 3.4.2)
-    aws-sdk-ec2 (1.672.0)
-      aws-sdk-core (~> 3, >= 3.269.0)
+    aws-sdk-ec2 (1.673.0)
+      aws-sdk-core (~> 3, >= 3.270.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-ec2instanceconnect (1.87.0)
-      aws-sdk-core (~> 3, >= 3.269.0)
+    aws-sdk-ec2instanceconnect (1.88.0)
+      aws-sdk-core (~> 3, >= 3.270.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-iam (1.166.0)
-      aws-sdk-core (~> 3, >= 3.269.0)
+    aws-sdk-iam (1.167.0)
+      aws-sdk-core (~> 3, >= 3.270.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-kms (1.144.0)
-      aws-sdk-core (~> 3, >= 3.269.0)
+    aws-sdk-kms (1.145.0)
+      aws-sdk-core (~> 3, >= 3.270.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.244.0)
+    aws-sdk-s3 (1.245.0)
       aws-sdk-core (~> 3, >= 3.269.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
-    aws-sdk-ssm (1.235.0)
-      aws-sdk-core (~> 3, >= 3.269.0)
+    aws-sdk-ssm (1.236.0)
+      aws-sdk-core (~> 3, >= 3.270.0)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
@@ -226,7 +226,7 @@ GEM
       base64 (>= 0.2)
       logger (~> 1.6)
       simpleidn (>= 0.2.1, < 0.4.0)
-    domain_name (0.7.20261031)
+    domain_name (0.7.20261117)
     drb (2.2.3)
     ed25519 (1.4.0)
     elftools (2.2.0)
@@ -301,7 +301,7 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.19.5)
     lru_redux (1.1.0)
-    mcp (1.10.0)
+    mcp (1.11.0)
       json_schemer (>= 2.4)
     metasm (1.0.6)
     metasploit-concern (5.0.8)
