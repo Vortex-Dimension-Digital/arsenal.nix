@@ -43,13 +43,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "openvas-scanner";
-  version = "23.52.12";
+  version = "23.52.13";
 
   src = fetchFromGitHub {
     owner = "greenbone";
     repo = "openvas-scanner";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-7rbzJdE1Jjc2qB9mtOnjUbyEiBtZsDkJIOEUxsT+3Qk=";
+    hash = "sha256-iMVeotlbOa3OnD1aIF1v8Hp4O13myf+ZoBYqz9ngvjU=";
   };
 
   # Upstream builds with -Wextra -Werror. Current GCC flags comparisons of
