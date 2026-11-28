@@ -55,7 +55,7 @@ packages.
 | [`ssh-audit`](packages/ssh-audit/package.nix) | Tool for ssh server auditing | 3.9.0 |
 | [`subfinder`](packages/subfinder/package.nix) | Subdomain discovery tool | 2.17.0 |
 | [`testssl`](packages/testssl/package.nix) | CLI tool to check a server's TLS/SSL capabilities | 3.2.5 |
-| [`thc-hydra`](packages/thc-hydra/package.nix) | Very fast network logon cracker which support many different services | 9.7 |
+| [`thc-hydra`](packages/thc-hydra/package.nix) | Very fast network logon cracker which support many different services | 9.9 |
 
 <!-- END GENERATED PACKAGE DOCS -->
 
